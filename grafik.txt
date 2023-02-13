@@ -1,0 +1,18 @@
+Baggrund: https://www.freepik.com/free-vector/mars-surface-alien-planet-landscape_26796705.htm#query=alien%20planet%20surface%20background&position=5&from_view=search&track=ais
+
+Sprites:
+    Vand: https://opengameart.org/content/bottle-of-water
+        https://www.freepik.com/free-vector/water-bottle-isolated-white-illustration_3200365.htm#query=water%20bottle%20animated&position=9&from_view=search&track=ais
+    
+    Brændstof/fuel: https://www.freepik.com/free-icon/gasoline_14100945.htm#query=gasoline%20container%20animated&position=28&from_view=search&track=ais
+    
+    Mad: https://www.freepik.com/free-icon/raspberry_14784352.htm#query=banana&position=15&from_view=search&track=sph
+         https://www.freepik.com/free-icon/bananas_15525258.htm#query=banana&position=25&from_view=search&track=sph
+
+    DÅRLIG mad: https://www.freepik.com/free-vector/banana-with-mould_28463000.htm#query=rotten%20food%20animated&position=23&from_view=search&track=ais
+
+    Luft: https://www.freepik.com/free-icon/oxygen-tank_14386003.htm#query=animated%20oxygen%20container&position=9&from_view=search&track=ais
+
+    Alien: https://www.freepik.com/free-vector/scary-little-blue-monster-cartoon-illustration_17544065.htm#from_view=detail_alsolike
+
+
