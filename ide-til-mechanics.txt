@@ -5,7 +5,7 @@ dårlige ting: undgå farlige aliens mm.?
 
 - Gode ting giver forskellige mængder point, de bedre ting er mere sjældne og er sværere at klikke på i tide.
 
-- Nogle af de gode ting kan give negative effekter hvis man misser dem:
+- Nogle af de "gode" ting kan give negative effekter hvis man misser dem:
 	Rådne bananer kan give minus-point
 	Misset "luft" kan gøre, at alle de andre objekter bevæger sig hurtigere i 5 sekunder.
 	
