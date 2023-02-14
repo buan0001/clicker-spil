@@ -1,7 +1,12 @@
+body {
+    margin: 0px;
+}
+
 #screen {
     aspect-ratio: 16 / 9;
     width: 100%;
-    grid: 1fr;
+    /* grid: 1fr; */
+    margin: 0;
 }
 
 #background_sprite{
