@@ -1,14 +1,38 @@
 body {
-    margin: 0px;
+    margin: 0;
 }
+
+img {
+    width: 100%;
+}
+
 
 #screen {
     aspect-ratio: 16 / 9;
     width: 100%;
-    /* grid: 1fr; */
-    margin: 0;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
 }
 
-#background_sprite{
-    width: 100%;
+#game {
+    grid-area: 1 / 1;
+    background-color: blue;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 10% / 10%;
+    grid-template-rows: 100%;
+}
+
+#background{
+    background-image: url(https://img.freepik.com/free-vector/isolated-space-background-scene_1308-31590.jpg?w=1380&t=st=1676398836~exp=1676399436~hmac=459750fb788fe016e474ecf88dee6cb1c0a31b29556c255c34dda790c97afc0b);
+    background-size: cover;
+    grid-area: 1 / 1;
+ 
+}
+
+#elements {
+    grid-area: 1 / 1;
+    position: relative;
+    overflow: hidden;
 }
