@@ -1,0 +1,21 @@
+hej og velkommen til asteroid scavenger
+
+i mit spil er man strandet på en asteroide, og man skal samle ressourcer for at slippe derfra i live
+
+vi skal samle både vand, ilt, brændstof og rum-bananer. selvom vi selvfølgelig har brug for det hele, så lægges de til én fælles score, hvor de forskellige genstande giver forskellige mængder point
+
+Vi er dog ikke alene om at samle gods. Andre fjendske aliens forsøger også at finde værdifulde genstande. klik på dem, og du mister et liv
+
+Desuden er det ikke alle rum-bananer der har klaret rejsen, og de er blevet rådne undervejs. Undgå også dem.
+
+De kan oplagt give minus-point, men hvis det er realistisk, kunne det være sjovt, hvis de påvirkede de andre genstande på en eller anden måde, fx ved at gøre, at de bevægede sig hurtigere, så de var sværere at ramme, i en kort periode.
+
+tematisk synes jeg det giver mening, at alle de gode ting kommer ned fra toppen, da man må regne med at de kommer fra rummet og ikke allerede er på planeten.
+
+derimod kunne de farlige aliens, som vel allerede er på asteroiden, bevæge sig fra side til side, og for at de ikke er de eneste, der bevæger sig på den måde, kunne nogle af de sjældne gode genstande opføre sig på samme måde
+
+overordnet er det ikke tanken, at det skal svært at beholde alle sine liv. jeg kunne godt tænke mig, at en del af sværheden ved spillet i stedet kommer fra en præcisionsmåler, som tæller, hvor mange af ens klik, der rent faktisk rammer et objekt.
+
+dvs. at præcisions-scoren går ned, hvis man rammer baggrunden. i sidste ende multipliceres præcisions-scoren med ens optjente point, hvorfor det er vigtigt at være akkurat.
+
+der lægges altså op til highscore chasing ligeså meget som der ligges op til at overleve
