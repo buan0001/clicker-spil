@@ -1,0 +1,52 @@
+@keyframes falling1 {
+  0% {
+    transform: translate(0, -200%);
+  }
+  100% {
+    transform: translate(0, 500%);
+  }
+}
+
+.falling {
+  animation-name: falling1;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+}
+
+@keyframes click_good {
+  0% {
+    scale: 1;
+  }
+  20% {
+    scale: 1.1;
+  }
+  100% {
+    scale: 0;
+  }
+}
+
+.good {
+  animation-name: click_good;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes click_bad {
+  100% {
+    rotate: 720deg;
+    scale: 0;
+  }
+}
+
+.bad {
+  animation-name: click_bad;
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+}
+
+.paused {
+    animation-play-state: paused;
+}

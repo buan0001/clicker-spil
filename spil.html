@@ -6,42 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Clicker</title>
     <link rel="stylesheet" href="spil.css" />
+    <link rel="stylesheet" href="animations.css" />
   </head>
   <body>
     <div id="screen">
       <div id="game">
         <div id="background"></div>
         <div id="elements">
-          <div id="water_container">
-            <img id="water_sprite" src="grafik/water-container.png">
+          <div id="water_container" class="falling">
+            <img id="water_sprite" class="good" src="grafik/water1.png" />
           </div>
-          <div id="banana_container">
-            <img id="banana_sprite" src="grafik/banana1.png">
+          <div id="banana_container" class="falling">
+            <img id="banana_sprite" class="good" src="grafik/banana1.png" />
           </div>
-          <div id="fuel_container">
-            <img id="fuel_sprite" src="">
+          <div id="air_container" class="falling">
+            <img id="air_sprite" class="good" src="grafik/oxygen-tank.png" />
           </div>
-          <div id="air_container">
-            <img id="air_sprite" src="grafik/oxygen-tank.png">
+          <div id="fuel_container" class="falling">
+            <img id="fuel_sprite" class="good" src="grafik/gasoline.png" />
           </div>
-          <div id="fuel_container">
-            <img src="grafik/gasoline.png">
+          <div id="alien_container" class="falling">
+            <img id="alien_sprite" class="bad" src="grafik/monster.png" />
+          </div>
+          <div id="rotten_container" class="falling">
+            <img id="rotten_sprite" class="bad" src="" src="" />
           </div>
         </div>
         <!-- <div id="ui">
             <img src="time" >
             <img src="score" >
             <img src="hp" > -->
-        </div>
+        <!-- </div> -->
         <div id="source">
-          Background designed by brgfx / Freepik
-          Banana designed by brgfx / Freepik
-          Rotten banana designed by brgfx / Freepik
-          Air container designed by brgfx / Freepik
-          Alien designed by brgfx / Freepik
-          Fuel container designed by Roundicons / Freepik
-          Water bottle designed by rawpixel.com / Freepik
-
+          <p>
+            Background designed by brgfx / Freepik <br />
+            Banana designed by rawpixel.com / Freepik <br />
+            Rotten banana designed by brgfx / Freepik <br />
+            Air container designed by Flaticons / Freepik <br />
+            Alien designed by Smashicons / Freepik <br />
+            Fuel container designed by Roundicons / Freepik <br />
+            Water bottle designed by rawpixel.com / Freepik <br />
+          </p>
         </div>
       </div>
       <div id="start"></div>
