@@ -35,62 +35,6 @@ img {
   grid-area: 1 / 1;
 }
 
-/* elementer */
-
-#water_container {
-  position: absolute;
-  width: 10%;
-  left: 10vw;
-  top: 100px;
-}
-
-#water_sprite {
-}
-#banana_container {
-  width: 10%;
-  position: absolute;
-  top: 60px;
-  left: 30vw;
-}
-
-#banana_sprite {
-}
-#air_container {
-  width: 10%;
-  position: absolute;
-  top: 120px;
-  left: 50vw;
-}
-
-#air_sprite {
-}
-#fuel_container {
-  width: 10%;
-  position: absolute;
-  top: 150px;
-  left: 60vw;
-}
-
-#fuel_sprite {
-}
-#alien_container {
-  width: 10%;
-  position: absolute;
-  top: 200px;
-  left: 80vw;
-}
-
-#alien_sprite {
-}
-#rotten_container {
-  width: 10%;
-  position: absolute;
-  top: 130px;
-  left: 35vw;
-}
-
-#rotten_sprite {
-}
 #ui {
   grid-area: 1 / 1;
   position: relative;
@@ -100,4 +44,49 @@ img {
 #source {
   grid-area: 1 / 1;
   opacity: 0;
+  pointer-events: none;
+}
+
+/* containers */
+
+#water_container {
+  position: absolute;
+  width: 10%;
+  left: 10vw;
+  top: 100px;
+}
+
+#banana_container {
+  width: 10%;
+  position: absolute;
+  top: 60px;
+  left: 30vw;
+}
+
+#air_container {
+  width: 10%;
+  position: absolute;
+  top: 120px;
+  left: 50vw;
+}
+
+#fuel_container {
+  width: 10%;
+  position: absolute;
+  top: 150px;
+  left: 60vw;
+}
+
+#alien_container {
+  width: 10%;
+  position: absolute;
+  top: 200px;
+  left: 80vw;
+}
+
+#rotten_container {
+  width: 10%;
+  position: absolute;
+  top: 130px;
+  left: 35vw;
 }
