@@ -1,17 +1,52 @@
 @keyframes falling1 {
   0% {
-    transform: translate(0, -200%);
+    transform: translate(0vw, -40vh);
   }
   100% {
-    transform: translate(0, 500%);
+    transform: translate(0, 100vh);
   }
 }
 
-.falling {
-  animation-name: falling1;
-  animation-duration: 4s;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
+@keyframes falling2 {
+  0% {
+    transform: translate(-40vw, -40vh);
+  }
+  100% {
+    transform: translate(40vw, 100vh);
+  }
+}
+
+@keyframes falling3 {
+  0% {
+    transform: translate(40vw, -40vh);
+  }
+  100% {
+    transform: translate(-40vw, 100vh);
+  }
+}
+
+@keyframes line1 {
+  0% {
+    transform: translate(-90vw, 20vh);
+  }
+  100% {
+    transform: translate(70vw, 40vh);
+  }
+}
+
+@keyframes rotate1 {
+  100% {
+    rotate: 360deg;
+  }
+}
+
+@keyframes rotate2 {
+  0% {
+    rotate: -30deg;
+  }
+  100% {
+    rotate: 30deg;
+  }
 }
 
 @keyframes click_good {
@@ -26,13 +61,6 @@
   }
 }
 
-.good {
-  animation-name: click_good;
-  animation-duration: 10s;
-  animation-iteration-count: infinite;
-  animation-fill-mode: forwards;
-}
-
 @keyframes click_bad {
   100% {
     rotate: 720deg;
@@ -40,13 +68,30 @@
   }
 }
 
-.bad {
-  animation-name: click_bad;
-  animation-duration: 10s;
+/* .falling {
+  animation-name: falling1;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+} */
+
+.good {
+  animation-name: click_goo, rotate1;
+  animation-duration: 6s;
   animation-iteration-count: infinite;
   animation-fill-mode: forwards;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+.bad {
+  animation-name: line1;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+    animation-direction: reverse;
 }
 
 .paused {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
