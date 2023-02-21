@@ -70,10 +70,10 @@
 
 @keyframes pulse1 {
   0% {
-    scale: 0.98;
+    scale: 0.9;
   }
   100% {
-    scale: 1.02;
+    scale: 1.1;
   }
 }
 
@@ -165,6 +165,7 @@
 
 .deadge {
   filter: blur(0.9px) grayscale(80%);
+  opacity: 0;
 }
 .paused {
   animation-play-state: paused;

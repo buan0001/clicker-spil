@@ -1,3 +1,5 @@
+"use strict";
+
 window.addEventListener("load", playStuff);
 
 let points = 0;
@@ -73,7 +75,7 @@ function clickAir() {
   console.log("clickAir");
   document
     .querySelector("#air_container")
-    .removeEventListener("mousedown", clickAlien);
+    .removeEventListener("mousedown", clickAir);
   document.querySelector("#air_container").classList.add("paused");
   document.querySelector("#air_sprite").classList.add("good");
   document
