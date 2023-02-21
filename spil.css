@@ -11,40 +11,69 @@ img {
 
 #screen {
   aspect-ratio: 16 / 9;
-  width: 100%;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 100%;
-  overflow: hidden;
+  grid-template: 100% / 100%;
 }
 
 #game {
   grid-area: 1 / 1;
-  overflow: hidden;
   display: grid;
-  grid-template-columns: 10% / 10%;
-  grid-template-rows: 100%;
+  grid-template: 100% / 100%;
 }
 #background {
+  grid-area: 1 / 1;
   background-image: url(grafik/baggrund1.jpg);
   background-size: cover;
-  grid-area: 1 / 1;
 }
 
 #elements {
   grid-area: 1 / 1;
-}
-
-#ui {
-  grid-area: 1 / 1;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
 #source {
   grid-area: 1 / 1;
   opacity: 0;
   pointer-events: none;
+}
+
+/* UI */
+
+#ui {
+  position: absolute;
+  top: 2vh;
+  right: 15vw;
+  color: white;
+
+  font-size: 2em;
+  font-family: sans-serif;
+
+  pointer-events: none;
+}
+
+#hp_board {
+  margin-block-start: 0.2em;
+  display: grid;
+  grid-template-columns: 5% 5% 5%;
+}
+
+#score_board {
+  display: grid;
+  grid-template-columns: 5% 5%;
+  gap: 0.1em;
+}
+
+#time_board {
+  display: grid;
+  grid-template-columns: 5% 5%;
+  margin-block-start: 0.2em;
+}
+
+#accuracy_board {
+  display: grid;
+  grid-template-columns: 5% 5%;
+  margin-block-start: 0.2em;
 }
 
 /* containers */
