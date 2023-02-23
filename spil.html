@@ -13,22 +13,22 @@
       <div id="game">
         <div id="background"></div>
         <div id="elements">
-          <div id="water_container" class="">
+          <div id="water_container" class="container">
             <img id="water_sprite" class="" src="grafik/water1.png" />
           </div>
-          <div id="banana_container" class="">
+          <div id="banana_container" class="container">
             <img id="banana_sprite" class="" src="grafik/banana1.png" />
           </div>
-          <div id="air_container" class="">
+          <div id="air_container" class="container">
             <img id="air_sprite" class="" src="grafik/oxygen-tank.png" />
           </div>
-          <div id="fuel_container" class="">
+          <div id="fuel_container" class="container">
             <img id="fuel_sprite" class="" src="grafik/gasoline.png" />
           </div>
-          <div id="alien_container" class="">
+          <div id="alien_container" class="container">
             <img id="alien_sprite" class="" src="grafik/monster.png" />
           </div>
-          <div id="rotten_container" class="">
+          <div id="rotten_container" class="container">
             <img id="rotten_sprite" class="" src="grafik/rotten_b.png" />
           </div>
         </div>
@@ -65,9 +65,20 @@
           </p>
         </div>
       </div>
-      <div id="start"></div>
-      <div id="game_over"></div>
-      <div id="level_complete"></div>
+      <div id="start" class="hidden">
+        <h2>ASTEROID SCAVENGER</h2>
+        <button id="press_start">START</button>
+      </div>
+      <div id="game_over"class="hidden">
+        <h2>cya loser 😎</h2>
+        <h3 id="final_score1"></h3>
+        <button id="lose_over">Go again?</button>
+      </div>
+      <div id="level_complete"class="hidden">
+        <h2>YOU WIN 🙌👍</h2>
+        <h3 id="final_score2"></h3>
+        <button id="win_over">Go again?</button>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
