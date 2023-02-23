@@ -24,13 +24,14 @@ img {
   grid-area: 1 / 1;
   background-image: url(grafik/baggrund1.jpg);
   background-size: cover;
+  pointer-events: all;
 }
 
 #elements {
   grid-area: 1 / 1;
   overflow: hidden;
   position: relative;
-  
+  pointer-events: none;
 }
 
 #source {
@@ -84,6 +85,7 @@ img {
   width: 10%;
   left: 10vw;
   top: 100px;
+  pointer-events: all;
 }
 
 #banana_container {
@@ -91,6 +93,7 @@ img {
   position: absolute;
   top: 60px;
   left: 30vw;
+  pointer-events: all;
 }
 
 #air_container {
@@ -98,6 +101,7 @@ img {
   position: absolute;
   top: 120px;
   left: 50vw;
+  pointer-events: all;
 }
 
 #fuel_container {
@@ -105,6 +109,7 @@ img {
   position: absolute;
   top: 150px;
   left: 60vw;
+  pointer-events: all;
 }
 
 #alien_container {
@@ -112,6 +117,7 @@ img {
   position: absolute;
   top: 200px;
   left: 80vw;
+  pointer-events: all;
 }
 
 #rotten_container {
@@ -119,4 +125,5 @@ img {
   position: absolute;
   top: 130px;
   left: 35vw;
+  pointer-events: all;
 }

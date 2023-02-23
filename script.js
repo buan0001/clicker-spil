@@ -5,7 +5,7 @@ window.addEventListener("load", playStuff);
 let points = 0;
 let hp = 3;
 let acc = 0;
-let accuracy = points / acc;
+
 let finalScore = points * (accuracy++);
 
 
@@ -42,7 +42,7 @@ function playStuff() {
     .querySelector("#rotten_container")
     .addEventListener("mousedown", clickRotten);
   document
-    .querySelector("#elements")
+    .querySelector("#background")
     .addEventListener("mousedown", clickElements);
 }
 
@@ -204,14 +204,15 @@ function clickElements() {
 
 function updateAccuracy() {
   console.log("updateAccuracy");
+  let accuracy = points / acc;
   if (
-    (document.querySelector("#accuracy_count").textContent =
-      ((points / acc) * 100) < 0)
+    (document.querySelector("#accuracy_count").textContent = accuracy < 0)
+
   ) {
     document.querySelector("#accuracy_count").textContent = "0%";
   }
   else{document.querySelector("#accuracy_count").textContent =
-      ((points / acc) * 100).toFixed(2)+"%"}
+      (accuracy * 100).toFixed(2)+"%"}
 }
 
 function addPoints() {
@@ -243,11 +244,15 @@ function removeHp() {
   console.log(removeHp);
   updateHp();
   hp--;
+  if (hp <= 0){gameOver();}
 }
 
 function updateHp() {
   console.log(updateHp);
   document.querySelector("#hp" + hp).classList.remove("alivege");
-  document.querySelector("#hp" + hp).classList.add("deadge");
-  
+  document.querySelector("#hp" + hp).classList.add("deadge"); 
+}
+
+function gameOver(){
+  console.log("gameOver")
 }
