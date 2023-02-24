@@ -3,20 +3,18 @@
 window.addEventListener("load", startUp);
 // window.addEventListener("load", playStuff);
 
-
-
 let points = 0;
 let hp = 3;
 let totalClickz = 0;
 let goodClickz = 0;
-let accuracy = goodClickz / totalClickz;
-let finalAccuracy = accuracy + 1;
-let finalScore = finalAccuracy * points;
+let accuracy;
+let finalAccuracy;
+let finalScore;
 
-function startUp(){
-console.log("startup")
-document.querySelector("#start").classList.remove("hidden")
-document.querySelector("#press_start").addEventListener("click", playStuff)
+function startUp() {
+  console.log("startup");
+  document.querySelector("#start").classList.remove("hidden");
+  document.querySelector("#press_start").addEventListener("click", playStuff);
 }
 
 function playStuff() {
@@ -233,7 +231,8 @@ function addClickz() {
 
 function displayClickz() {
   console.log("updateClickz");
-  let accuracy = goodClickz / totalClickz;
+  accuracy = goodClickz / totalClickz;
+  console.log(accuracy);
   document.querySelector("#accuracy_count").textContent =
     (accuracy * 100).toFixed(2) + "%";
   updateEverything();
@@ -262,9 +261,7 @@ function updateHp() {
   document.querySelector("#hp" + hp).classList.add("deadge");
 }
 function updateEverything() {
-  let accuracy = goodClickz / totalClickz;
-  let finalAccuracy = accuracy + 1;
-  let finalScore = finalAccuracy * points;
+  finalScore = (accuracy + 1) * points;
   console.log("======EVERYTHING=======");
   console.log("Points: " + points);
   console.log("total clickz: " + totalClickz);
@@ -272,16 +269,13 @@ function updateEverything() {
   console.log("hp: " + hp);
   console.log("accuracy: " + accuracy);
   console.log("Final score: " + finalScore);
-  if (points >= 100) {
+  if (points >= 10) {
     youWin();
   }
 }
 
 function youWin() {
   console.log("You win!!!");
-  let accuracy = goodClickz / totalClickz;
-  let finalAccuracy = accuracy + 1;
-  let finalScore = finalAccuracy * points;
   document.querySelector("#level_complete").classList.remove("hidden");
   stopShit();
   document.querySelector("#final_score2").innerHTML =
@@ -290,7 +284,7 @@ function youWin() {
     "<br /> With an accuracy of: " +
     (accuracy * 100).toFixed(2) +
     "% <br /> Total score: " +
-    parseFloat((finalScore).toFixed(2));
+    parseFloat(finalScore.toFixed(2));
   document.querySelector("#win_over").addEventListener("click", startOver);
 }
 
@@ -298,9 +292,6 @@ function gameOver() {
   console.log("You lose :(");
   document.querySelector("#game_over").classList.remove("hidden");
   stopShit();
-  let accuracy = goodClickz / totalClickz;
-  let finalAccuracy = accuracy + 1;
-  let finalScore = finalAccuracy * points;
   document.querySelector("#final_score1").innerHTML =
     "Your score was: " +
     points +
