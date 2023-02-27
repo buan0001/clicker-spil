@@ -123,7 +123,7 @@
   animation-timing-function: linear;
   animation-direction: alternate;
 }
-.good {
+.click_good {
   animation-name: click_good;
   animation-duration: 0.5s;
   animation-iteration-count: 1;
@@ -131,7 +131,7 @@
   animation-fill-mode: forwards;
 }
 
-.bad {
+.click_bad {
   animation-name: click_bad;
   animation-duration: 0.5s;
   animation-iteration-count: 1;

@@ -1,7 +1,7 @@
 "use strict";
 
-window.addEventListener("load", startUp);
-// window.addEventListener("load", playStuff);
+// window.addEventListener("load", startUp);
+window.addEventListener("load", startUp2);
 
 let points = 0;
 let hp = 3;
@@ -14,10 +14,16 @@ let finalScore;
 function startUp() {
   console.log("startup");
   document.querySelector("#start").classList.remove("hidden");
-  document.querySelector("#press_start").addEventListener("click", playStuff);
+  document.querySelector("#press_start").addEventListener("click", addAnimations);
+  registerClick();
 }
 
-function playStuff() {
+function startUp2(){
+  addAnimations();
+  registerClick();
+}
+
+function addAnimations() {
   document.querySelector("#start").classList.add("hidden");
   document.querySelector("#water_container").classList.add("falling1");
   document.querySelector("#banana_container").classList.add("falling1");
@@ -31,137 +37,70 @@ function playStuff() {
   document.querySelector("#fuel_sprite").classList.add("rotate2");
   document.querySelector("#alien_sprite").classList.add("rotate2");
   document.querySelector("#rotten_sprite").classList.add("rotate2");
-  console.log("playStuff");
-  document
-    .querySelector("#water_sprite")
-    .addEventListener("mousedown", clickWater);
-  document
-    .querySelector("#air_container")
-    .addEventListener("mousedown", clickAir);
-  document
-    .querySelector("#banana_container")
-    .addEventListener("mousedown", clickBanana);
-  document
-    .querySelector("#fuel_container")
-    .addEventListener("mousedown", clickFuel);
-  document
-    .querySelector("#alien_container")
-    .addEventListener("mousedown", clickAlien);
-  document
-    .querySelector("#rotten_container")
-    .addEventListener("mousedown", clickRotten);
-  document
-    .querySelector("#background")
-    .addEventListener("mousedown", addClickz);
+  console.log("addAnimations");
 }
 
-function clickWater() {
-  console.log("clickWater");
-  document
-    .querySelector("#water_sprite")
-    .removeEventListener("mousedown", clickWater);
-  document.querySelector("#water_container").classList.add("paused");
-  document.querySelector("#water_sprite").classList.add("good");
-  document
-    .querySelector("#water_sprite")
-    .addEventListener("animationend", restartWater);
+function registerClick() {
+  document.querySelector("#water_container").addEventListener("mousedown", clickGood);
+  document.querySelector("#air_container").addEventListener("mousedown", clickGood);
+  document.querySelector("#banana_container").addEventListener("mousedown", clickGood);
+  document.querySelector("#fuel_container").addEventListener("mousedown", clickGood);
+  document.querySelector("#alien_container").addEventListener("mousedown", clickAlien);
+  document.querySelector("#rotten_container").addEventListener("mousedown", clickRotten);
+  document.querySelector("#background").addEventListener("mousedown", addClickz);
+}
+
+function clickGood() {
+  console.log("clickGood");
+  let good = this;
+  console.log("======" + this + "=======");
+  good.removeEventListener("mousedown", clickGood);
+  good.classList.add("paused");
+  good.querySelector("img").classList.add("click_good");
+  good.addEventListener("animationend", restartGood);
   addPoints();
 }
 
-function restartWater() {
-  console.log("restartWater");
-  document.querySelector("#water_container").classList.remove("paused");
-  document.querySelector("#water_sprite").classList.remove("good");
-  document.querySelector("#water_container").classList.remove("falling1");
-  document.querySelector("#water_container").offsetLeft;
-  document.querySelector("#water_container").classList.add("falling1");
-  document
-    .querySelector("#water_sprite")
-    .addEventListener("mousedown", clickWater);
+function restartGood(){
+    console.log("restartGood");
+    let good = this;
+    console.log(good)
+    good.classList.remove("paused");
+    good.querySelector("img").classList.remove("click_good");
+    good.classList.remove("falling1");
+    good.offsetLeft;
+    good.classList.add("falling1");
+    good.addEventListener("mousedown", clickGood);
 }
+// function clickBad() {
+//   console.log("clickBad");
+//   let good = this;
+//   console.log("======" + this + "=======");
+//   good.removeEventListener("mousedown", clickBad);
+//   good.classList.add("paused");
+//   good.querySelector("img").classList.add("click_bad");
+//   good.addEventListener("animationend", restartBad);
+//   addPoints();
+// }
 
-function clickAir() {
-  console.log("clickAir");
-  document
-    .querySelector("#air_container")
-    .removeEventListener("mousedown", clickAir);
-  document.querySelector("#air_container").classList.add("paused");
-  document.querySelector("#air_sprite").classList.add("good");
-  document
-    .querySelector("#air_sprite")
-    .addEventListener("animationend", restartAir);
-  addPoints();
-}
+// function restartBad() {
+//   console.log("restartGood");
+//   let good = this;
+//   console.log(good);
+//   good.classList.remove("paused");
+//   good.querySelector("img").classList.remove("click_bad");
+//   good.classList.remove("falling1");
+//   good.offsetLeft;
+//   good.classList.add("falling1");
+//   good.addEventListener("mousedown", clickGood);
+// }
 
-function restartAir() {
-  console.log("restartAir");
-  document.querySelector("#air_container").classList.remove("paused");
-  document.querySelector("#air_sprite").classList.remove("good");
-  document.querySelector("#air_container").classList.remove("falling1");
-  document.querySelector("#air_container").offsetLeft;
-  document.querySelector("#air_container").classList.add("falling1");
-  document
-    .querySelector("#air_container")
-    .addEventListener("mousedown", clickAir);
-}
-function clickBanana() {
-  console.log("clickBanana");
-  document
-    .querySelector("#banana_container")
-    .removeEventListener("mousedown", clickBanana);
-  document.querySelector("#banana_container").classList.add("paused");
-  document.querySelector("#banana_sprite").classList.add("good");
-  document
-    .querySelector("#banana_sprite")
-    .addEventListener("animationend", restartBanana);
-  addPoints();
-}
-
-function restartBanana() {
-  console.log("restartBanana");
-  document.querySelector("#banana_container").classList.remove("paused");
-  document.querySelector("#banana_sprite").classList.remove("good");
-  document.querySelector("#banana_container").classList.remove("falling1");
-  document.querySelector("#banana_container").offsetLeft;
-  document.querySelector("#banana_container").classList.add("falling1");
-  document
-    .querySelector("#banana_container")
-    .addEventListener("mousedown", clickBanana);
-}
-function clickFuel() {
-  console.log("clickFuel");
-  document
-    .querySelector("#fuel_container")
-    .removeEventListener("mousedown", clickFuel);
-  document.querySelector("#fuel_container").classList.add("paused");
-  document.querySelector("#fuel_sprite").classList.add("good");
-  document
-    .querySelector("#fuel_sprite")
-    .addEventListener("animationend", restartFuel);
-  addPoints();
-}
-
-function restartFuel() {
-  console.log("restartFuel");
-  document.querySelector("#fuel_container").classList.remove("paused");
-  document.querySelector("#fuel_sprite").classList.remove("good");
-  document.querySelector("#fuel_container").classList.remove("falling1");
-  document.querySelector("#fuel_container").offsetLeft;
-  document.querySelector("#fuel_container").classList.add("falling1");
-  document
-    .querySelector("#fuel_container")
-    .addEventListener("mousedown", clickFuel);
-}
 function clickAlien() {
   console.log("clickAlien");
-  document
-    .querySelector("#alien_container")
-    .removeEventListener("mousedown", clickAlien);
+  document.querySelector("#alien_container").removeEventListener("mousedown", clickAlien);
   document.querySelector("#alien_container").classList.add("paused");
   document.querySelector("#alien_sprite").classList.add("bad");
-  document
-    .querySelector("#alien_sprite")
-    .addEventListener("animationend", restartAlien);
+  document.querySelector("#alien_sprite").addEventListener("animationend", restartAlien);
   if (hp > 0) {
     removeHp();
   }
@@ -174,20 +113,14 @@ function restartAlien() {
   document.querySelector("#alien_container").classList.remove("falling1");
   document.querySelector("#alien_container").offsetLeft;
   document.querySelector("#alien_container").classList.add("falling1");
-  document
-    .querySelector("#alien_container")
-    .addEventListener("mousedown", clickAlien);
+  document.querySelector("#alien_container").addEventListener("mousedown", clickAlien);
 }
 function clickRotten() {
   console.log("clickRotten");
-  document
-    .querySelector("#rotten_container")
-    .removeEventListener("mousedown", clickRotten);
+  document.querySelector("#rotten_container").removeEventListener("mousedown", clickRotten);
   document.querySelector("#rotten_container").classList.add("paused");
   document.querySelector("#rotten_sprite").classList.add("bad");
-  document
-    .querySelector("#rotten_sprite")
-    .addEventListener("animationend", restartRotten);
+  document.querySelector("#rotten_sprite").addEventListener("animationend", restartRotten);
   removePoints();
 }
 
@@ -198,9 +131,7 @@ function restartRotten() {
   document.querySelector("#rotten_container").classList.remove("falling1");
   document.querySelector("#rotten_container").offsetLeft;
   document.querySelector("#rotten_container").classList.add("falling1");
-  document
-    .querySelector("#rotten_container")
-    .addEventListener("mousedown", clickRotten);
+  document.querySelector("#rotten_container").addEventListener("mousedown", clickRotten);
 }
 
 function addPoints() {
@@ -209,18 +140,14 @@ function addPoints() {
   goodClickz++;
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
-  document
-    .querySelector("#score_image")
-    .addEventListener("animationend", displayPoints);
+  document.querySelector("#score_image").addEventListener("animationend", displayPoints);
 }
 
 function removePoints() {
   points -= 5;
   addClickz();
   document.querySelector("#score_image").classList.add("loseStuff");
-  document
-    .querySelector("#score_image")
-    .addEventListener("animationend", displayPoints);
+  document.querySelector("#score_image").addEventListener("animationend", displayPoints);
 }
 
 function addClickz() {
@@ -233,8 +160,7 @@ function displayClickz() {
   console.log("updateClickz");
   accuracy = goodClickz / totalClickz;
   console.log(accuracy);
-  document.querySelector("#accuracy_count").textContent =
-    (accuracy * 100).toFixed(2) + "%";
+  document.querySelector("#accuracy_count").textContent = (accuracy * 100).toFixed(2) + "%";
   updateEverything();
 }
 
@@ -278,13 +204,7 @@ function youWin() {
   console.log("You win!!!");
   document.querySelector("#level_complete").classList.remove("hidden");
   stopShit();
-  document.querySelector("#final_score2").innerHTML =
-    "Your score was: " +
-    points +
-    "<br /> With an accuracy of: " +
-    (accuracy * 100).toFixed(2) +
-    "% <br /> Total score: " +
-    parseFloat(finalScore.toFixed(2));
+  document.querySelector("#final_score2").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
   document.querySelector("#win_over").addEventListener("click", startOver);
 }
 
@@ -292,13 +212,7 @@ function gameOver() {
   console.log("You lose :(");
   document.querySelector("#game_over").classList.remove("hidden");
   stopShit();
-  document.querySelector("#final_score1").innerHTML =
-    "Your score was: " +
-    points +
-    "<br /> With an accuracy of: " +
-    (accuracy * 100).toFixed(2) +
-    "% <br /> Total score: " +
-    parseFloat(finalScore.toFixed(2));
+  document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
   document.querySelector("#lose_over").addEventListener("click", startOver);
 }
 
@@ -314,7 +228,7 @@ function startOver() {
   document.querySelector("#accuracy_count").textContent = "100.00%";
   displayPoints();
   gainHp();
-  playStuff();
+  addAnimations();
 }
 
 function gainHp() {
@@ -353,25 +267,11 @@ function stopShit() {
   document.querySelector("#fuel_sprite").classList.remove("rotate2");
   document.querySelector("#alien_sprite").classList.remove("rotate2");
   document.querySelector("#rotten_sprite").classList.remove("rotate2");
-  document
-    .querySelector("#water_sprite")
-    .removeEventListener("mousedown", clickWater);
-  document
-    .querySelector("#air_container")
-    .removeEventListener("mousedown", clickAir);
-  document
-    .querySelector("#banana_container")
-    .removeEventListener("mousedown", clickBanana);
-  document
-    .querySelector("#fuel_container")
-    .removeEventListener("mousedown", clickFuel);
-  document
-    .querySelector("#alien_container")
-    .removeEventListener("mousedown", clickAlien);
-  document
-    .querySelector("#rotten_container")
-    .removeEventListener("mousedown", clickRotten);
-  document
-    .querySelector("#background")
-    .removeEventListener("mousedown", addClickz);
+  document.querySelector("#water_sprite").removeEventListener("mousedown", clickWater);
+  document.querySelector("#air_container").removeEventListener("mousedown", clickAir);
+  document.querySelector("#banana_container").removeEventListener("mousedown", clickBanana);
+  document.querySelector("#fuel_container").removeEventListener("mousedown", clickFuel);
+  document.querySelector("#alien_container").removeEventListener("mousedown", clickAlien);
+  document.querySelector("#rotten_container").removeEventListener("mousedown", clickRotten);
+  document.querySelector("#background").removeEventListener("mousedown", addClickz);
 }
