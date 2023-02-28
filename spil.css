@@ -49,13 +49,13 @@ img {
 #start {
   grid-area: 1 / 1;
   background-color: black;
-    z-index: 100;
+  z-index: 100;
 }
 
 #game_over {
   grid-area: 1 / 1;
   background-color: red;
-    z-index: 100;
+  z-index: 100;
 }
 
 #level_complete {
@@ -111,40 +111,89 @@ img {
 .container {
   pointer-events: all;
   position: absolute;
+  width: 10%;
 }
 
 #water_container {
   width: 10%;
-  left: 10vw;
-  top: 100px;
 }
 
 #banana_container {
   width: 10%;
-  top: 60px;
-  left: 30vw;
 }
 
 #air_container {
   width: 10%;
-  top: 120px;
-  left: 50vw;
 }
 
 #fuel_container {
   width: 10%;
-  top: 150px;
-  left: 60vw;
 }
 
 #alien_container {
   width: 10%;
-  top: 200px;
-  left: 80vw;
 }
 
 #rotten_container {
   width: 10%;
-  top: 130px;
-  left: 35vw;
+}
+
+/* Positions */
+.vertical1 {
+  left: 2vw;
+}
+.vertical2{
+  left: 11vw;
+}
+.vertical3 {
+  left: 20vw;
+}
+.vertical4 {
+  left: 30vw;
+}
+.vertical5 {
+  left: 40vw;
+}
+.vertical6 {
+  left: 50vw;
+}
+.vertical7 {
+  left: 60vw;
+}
+.vertical8 {
+  left: 70vw;
+}
+.vertical9 {
+  left: 80vw;
+}
+.vertical10 {
+  left: 90vw;
+}
+
+.horizontal1{
+  top:10vh;
+}
+.horizontal2{
+  top:20vh
+}
+.horizontal3{
+  top:30vh
+}
+.horizontal4{
+  top:40vh
+}
+.horizontal5{
+  top:50vh
+}
+.horizontal6{
+  top:60vh
+}
+.horizontal7{
+  top:70vh
+}
+.horizontal8{
+  top:80vh
+}
+.horizontal9{
+  top:90vh
 }
