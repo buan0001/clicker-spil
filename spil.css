@@ -130,12 +130,15 @@ img {
   width: 10%;
 }
 
-#alien_container {
-  width: 10%;
+#alien_container1 {
+  width: 15%;
 }
 
+#alien_container2 {
+  width: 15%;
+}
 #rotten_container {
-  width: 10%;
+  width: 15%;
 }
 
 /* Positions */

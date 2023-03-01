@@ -19,9 +19,9 @@ function startScreen() {
 }
 
 function soundButton() {
-  let but = document.querySelector("#sound_buttonHover");
-  but.volume = 0.2
-  but.currentTime = 0
+  let but = document.querySelector("#sound_button");
+  but.volume = 0.2;
+  but.currentTime = 0;
   but.play();
 }
 
@@ -31,15 +31,17 @@ function startUp() {
   addPositions();
   finishAnimation();
   hideScreens();
-  soundBackground()
+  soundBackground();
 }
 
-function soundBackground(){
-  console.log("soundBackground")
-let sound = document.querySelector("#sound_background")
-sound.volume = 1
-sound.play()
-sound.loop = true;
+function soundBackground() {
+  console.log("soundBackground");
+  document.querySelector("#sound_lose").currentTime = 0;
+  document.querySelector("#sound_lose").pause();
+  let sound = document.querySelector("#sound_background");
+  sound.volume = 1;
+  sound.play();
+  // sound.loop = true;
 }
 
 function addAnimations() {
@@ -121,14 +123,39 @@ function newHeight() {
 
 function clickGood() {
   console.log("clickGood");
-  let sound = document.querySelector("#sound_clickGood");
-  sound.currentTime = 0;
-  sound.play();
   let good = this;
+
+  if (good == document.querySelector("#water_container")) {
+    console.log("sound_water");
+    let water = document.querySelector("#sound_water");
+    water.currentTime = 0;
+    water.volume = 0.5;
+    water.play();
+  } else if (Math.random() >= 0.66) {
+    console.log("sound_good1");
+    let good1 = document.querySelector("#sound_good1");
+    good1.currentTime = 0;
+    good1.volume = 0.5;
+    good1.play();
+  } else if (Math.random() <= 0.33) {
+    console.log("sound_good2");
+    let good2 = document.querySelector("#sound_good2");
+    good2.currentTime = 0;
+    good2.volume = 0.4;
+    good2.play();
+  } else {
+    console.log("sound_good3");
+    let good3 = document.querySelector("#sound_good3");
+    good3.currentTime = 0;
+    good3.volume = 0.3;
+    good3.play();
+  }
+
   good.removeEventListener("mousedown", clickGood);
   good.classList.add("paused");
   good.querySelector("img").classList.add("click_good");
   good.addEventListener("animationend", restartGood);
+
   addPoints();
 }
 
@@ -144,23 +171,30 @@ function restartGood() {
 
 function clickBad() {
   console.log("clickBad");
-  let rot = document.querySelector("#sound_clickRotten");
-  let alien = document.querySelector("#sound_clickAlien");
+  let rot1 = document.querySelector("#sound_yuck1");
+  let rot2 = document.querySelector("#sound_yuck2");
+  let alien = document.querySelector("#sound_alien");
   let bad = this;
   bad.removeEventListener("mousedown", clickBad);
   bad.classList.add("paused");
   bad.querySelector("img").classList.add("click_bad");
   bad.addEventListener("animationend", restartBad);
-  if (bad == document.querySelector("#rotten_container")) {
-    console.log("CLICKROTTEN");
-    removePoints();
-    rot.currentTime = 0;
-    rot.play();
-  } else {
+  if (bad == document.querySelector("#alien_container1") || bad == document.querySelector("#alien_container2")) {
     console.log("CLICKALIEN");
-    removeHp();
     alien.currentTime = 0;
     alien.play();
+    removeHp();
+  } else if (Math.random() >= 0.5) {
+    console.log("CLICKROTTEN1");
+    removePoints();
+    rot1.currentTime = 0;
+    rot1.play();
+  } else {
+    console.log("CLICKROTTEN2");
+    removePoints();
+    rot2.currentTime = 0;
+    rot2.volume = 0.5;
+    rot2.play();
   }
 }
 
@@ -185,13 +219,13 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  if (points >= 3) {
+  if (points >= 20) {
     youWin();
   }
 }
 
 function removePoints() {
-  points -= 5;
+  points -= 15;
   addClickz();
   document.querySelector("#score_image").classList.add("loseStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
@@ -249,38 +283,40 @@ function displayClickz() {
 
 function youWin() {
   console.log("You win!!!");
-  
-  // removeAnimations();
 
-  document.querySelector("#sound_background").volume = 0.2
-  let sound = document.querySelector("#sound_win")
-  sound.play()
-  
+  document.querySelector("#sound_background").volume = 0.4;
+  let sound = document.querySelector("#sound_win");
+  sound.play();
+
   finalScore = (accuracy + 1) * points;
   document.querySelector("#level_complete").classList.remove("hidden");
-  document.querySelector("#final_score2").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
-  
+  document.querySelector("#final_score2").innerHTML =
+    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+
   document.querySelector("#win_over").addEventListener("click", startOver);
   document.querySelector("#win_over").addEventListener("mouseover", soundButton);
 }
 
 function youLose() {
   console.log("You lose :(");
-  
-  // removeAnimations();
-  
-    // document.querySelector("#sound_background").volume = 0.2;
-    document.querySelector("#sound_background").pause()
-    let sound = document.querySelector("#sound_lose");
-    sound.play();
+
+  soundDefeat();
 
   finalScore = (accuracy + 1) * points;
   document.querySelector("#game_over").classList.remove("hidden");
-  document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
- 
+  document.querySelector("#final_score1").innerHTML =
+    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+
   document.querySelector("#lose_over").addEventListener("click", startOver);
   document.querySelector("#lose_over").addEventListener("mouseover", soundButton);
 }
+
+function soundDefeat() {
+  document.querySelector("#sound_background").pause();
+  let sound = document.querySelector("#sound_lose");
+  sound.play();
+}
+
 
 function startOver() {
   console.log("startOver");
@@ -342,11 +378,3 @@ function gainHp() {
   hp2.classList.add("alivege");
   hp3.classList.add("alivege");
 }
-
-sound_background;
-sound_buttonHover;
-sound_clickGood;
-sound_clickAlien;
-sound_clickRotten;
-sound_win;
-sound_lose;
