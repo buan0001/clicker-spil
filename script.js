@@ -1,7 +1,7 @@
 "use strict";
 
-// window.addEventListener("load", startScreen);
-window.addEventListener("load", startUp);
+window.addEventListener("load", startScreen);
+// window.addEventListener("load", startUp);
 
 let points = 0;
 let hp = 3;
@@ -14,11 +14,14 @@ let finalScore;
 function startScreen() {
   console.log("startup");
   document.querySelector("#press_start").addEventListener("mouseover", soundButton);
+  // document.querySelector("#press_start").addEventListener("mouseleave", soundButton);
   document.querySelector("#press_start").addEventListener("click", startUp);
 }
 
 function soundButton() {
-  let but = document.querySelector("#sound_buttonhover");
+  let but = document.querySelector("#sound_buttonHover");
+  but.volume = 0.2
+  but.currentTime = 0
   but.play();
 }
 
@@ -34,8 +37,8 @@ function startUp() {
 function soundBackground(){
   console.log("soundBackground")
 let sound = document.querySelector("#sound_background")
-sound.play()
 sound.volume = 1
+sound.play()
 sound.loop = true;
 }
 
@@ -207,7 +210,7 @@ function removeHp() {
   addClickz();
   hp--;
   if (hp <= 0) {
-    gameOver();
+    youLose();
   }
 }
 
@@ -261,12 +264,13 @@ function youWin() {
   document.querySelector("#win_over").addEventListener("mouseover", soundButton);
 }
 
-function gameOver() {
+function youLose() {
   console.log("You lose :(");
   
   // removeAnimations();
   
-    document.querySelector("#sound_background").volume = 0.2;
+    // document.querySelector("#sound_background").volume = 0.2;
+    document.querySelector("#sound_background").pause()
     let sound = document.querySelector("#sound_lose");
     sound.play();
 
