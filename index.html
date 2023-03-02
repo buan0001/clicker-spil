@@ -41,7 +41,11 @@
             <span id="score_count">0</span>
           </div>
           <div id="time_board">
-            <img id="time_count" src="grafik/sand-clock.png" />
+            <div id="time_container">
+              <div id="time_sprite"></div>
+            </div>
+
+            <!-- <img id="time_count" src="grafik/sand-clock.png" /> -->
           </div>
           <div id="hp_board">
             <img id="hp1" class="alivege" src="grafik/astronaut.png" />
@@ -49,8 +53,8 @@
             <img id="hp3" class="alivege" src="grafik/astronaut.png" />
           </div>
           <div id="accuracy_board">
-            <img src="grafik/dart-board.png">
-            <span id="accuracy_count">100.00%</span>
+            <img src="grafik/dart-board.png"/>
+            <span id="accuracy_count">???</span>
           </div>
         </div>
         <div id="source">
@@ -66,36 +70,37 @@
             Bag designed by Flaticon / Freepik <br />
             Hourglass designed by Icongeek26 / Freepik <br />
             Sound effects from Pixabay <br />
-
           </p>
         </div>
       </div>
       <div id="start" class="">
         <h2>ASTEROID SCAVENGER</h2>
-        <button id="press_start">START</button>
+        <button id="press_start" class="">START</button>
       </div>
-      <div id="game_over"class="hidden">
+      <div id="game_over" class="hidden">
         <h2>cya loser 😎</h2>
         <h3 id="final_score1"></h3>
-        <button id="lose_over">Go again?</button>
+        <button id="lose_over" class="">Go again?</button>
       </div>
-      <div id="level_complete"class="hidden">
+      <div id="level_complete" class="hidden">
         <h2>YOU WIN 🙌👍</h2>
         <h3 id="final_score2"></h3>
-        <button id="win_over">Go again?</button>
+        <button id="win_over" class="">Go again?</button>
       </div>
     </div>
-    <audio id="sound_background" src="sounds/background.mp3"> </audio>
-    <audio id="sound_button" src="sounds/button.mp3"> </audio>
-    <audio id="sound_good1" src="sounds/good1.mp3"> </audio>
-    <audio id="sound_good2" src="sounds/good2.mp3"> </audio>
-    <audio id="sound_good3" src="sounds/good3.mp3"> </audio>
-    <audio id="sound_water" src="sounds/water.mp3"> </audio>
-    <audio id="sound_alien" src="sounds/alien.mp3"> </audio>
-    <audio id="sound_yuck1" src="sounds/yuck1.mp3"> </audio>
-    <audio id="sound_yuck2" src="sounds/yuck2.mp3"> </audio>
-    <audio id="sound_win" src="sounds/won.mp3"> </audio>
-    <audio id="sound_lose" src="sounds/lost.mp3"> </audio>
+    <div id="sound">
+    <audio id="sound_background" src="sounds/background.mp3"></audio>
+    <audio id="sound_button" src="sounds/button.mp3"></audio>
+    <audio id="sound_good1" src="sounds/good1.mp3"></audio>
+    <audio id="sound_good2" src="sounds/good2.mp3"></audio>
+    <audio id="sound_good3" src="sounds/good3.mp3"></audio>
+    <audio id="sound_water" src="sounds/water.mp3"></audio>
+    <audio id="sound_alien" src="sounds/alien.mp3"></audio>
+    <audio id="sound_yuck1" src="sounds/yuck1.mp3"></audio>
+    <audio id="sound_yuck2" src="sounds/yuck2.mp3"></audio>
+    <audio id="sound_win" src="sounds/won.mp3"></audio>
+    <audio id="sound_lose" src="sounds/lost.mp3"></audio>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

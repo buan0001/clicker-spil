@@ -1,15 +1,14 @@
 "use strict";
 
-window.addEventListener("load", startScreen);
-// window.addEventListener("load", startUp);
+// window.addEventListener("load", startScreen);
+window.addEventListener("load", startUp);
 
 let points = 0;
 let hp = 3;
 let totalClickz = 0;
 let goodClickz = 0;
-let accuracy;
-let finalAccuracy;
-let finalScore;
+let accuracy = 0
+let finalScore = 0
 
 function startScreen() {
   console.log("startup");
@@ -26,6 +25,10 @@ function soundButton() {
 }
 
 function startUp() {
+  let time = document.querySelector("#time_sprite");
+  time.classList.add("shrink");
+  time.addEventListener("animationend", stopThings);
+
   addAnimations();
   registerClick();
   addPositions();
@@ -36,8 +39,11 @@ function startUp() {
 
 function soundBackground() {
   console.log("soundBackground");
-  document.querySelector("#sound_lose").currentTime = 0;
-  document.querySelector("#sound_lose").pause();
+
+  let lose = document.querySelector("#sound_lose")
+  lose.currentTime = 0;
+  lose.pause();
+
   let sound = document.querySelector("#sound_background");
   sound.volume = 1;
   sound.play();
@@ -219,9 +225,9 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  if (points >= 20) {
-    youWin();
-  }
+  // if (points >= 20) {
+  //   youWin();
+  // }
 }
 
 function removePoints() {
@@ -262,6 +268,8 @@ function addClickz() {
 function displayClickz() {
   console.log("Clickz");
   accuracy = goodClickz / totalClickz;
+  finalScore = (accuracy + 1) * points;
+
   console.log(accuracy);
   document.querySelector("#accuracy_count").textContent = (accuracy * 100).toFixed(2) + "%";
   // updateEverything();
@@ -281,6 +289,26 @@ function displayClickz() {
 //   }
 // }
 
+function stopThings() {
+  console.log("startOver");
+  removeAnimations();
+  removeEvents();
+  document.querySelector("#time_sprite").classList.remove("shrink");
+  if (finalScore >= 1) {
+    youWin();
+  } else {
+    youLose();
+  }
+  // resetVariables();
+  // gainHp();
+  // displayPoints();
+  // // addAnimations();
+  // // hideScreens();
+  // // registerClick();
+  // startUp();
+  // document.querySelector("#accuracy_count").textContent = "100.00%";
+}
+
 function youWin() {
   console.log("You win!!!");
 
@@ -288,12 +316,11 @@ function youWin() {
   let sound = document.querySelector("#sound_win");
   sound.play();
 
-  finalScore = (accuracy + 1) * points;
+  // finalScore = (accuracy + 1) * points;
   document.querySelector("#level_complete").classList.remove("hidden");
-  document.querySelector("#final_score2").innerHTML =
-    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#final_score2").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
-  document.querySelector("#win_over").addEventListener("click", startOver);
+  document.querySelector("#win_over").addEventListener("click", goToStart);
   document.querySelector("#win_over").addEventListener("mouseover", soundButton);
 }
 
@@ -302,12 +329,11 @@ function youLose() {
 
   soundDefeat();
 
-  finalScore = (accuracy + 1) * points;
+  // finalScore = (accuracy + 1) * points;
   document.querySelector("#game_over").classList.remove("hidden");
-  document.querySelector("#final_score1").innerHTML =
-    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
-  document.querySelector("#lose_over").addEventListener("click", startOver);
+  document.querySelector("#lose_over").addEventListener("click", goToStart);
   document.querySelector("#lose_over").addEventListener("mouseover", soundButton);
 }
 
@@ -317,19 +343,12 @@ function soundDefeat() {
   sound.play();
 }
 
-
-function startOver() {
-  console.log("startOver");
-  removeAnimations();
-  removeEvents();
+function goToStart() {
   resetVariables();
   gainHp();
   displayPoints();
-  // addAnimations();
-  // hideScreens();
-  // registerClick();
   startUp();
-  document.querySelector("#accuracy_count").textContent = "100.00%";
+  document.querySelector("#accuracy_count").textContent = "???";
 }
 
 function removeAnimations() {
@@ -358,6 +377,8 @@ function resetVariables() {
   hp = 3;
   totalClickz = 0;
   goodClickz = 0;
+  finalScore = 0;
+  accuracy = 0;
 }
 
 function gainHp() {

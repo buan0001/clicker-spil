@@ -98,6 +98,8 @@ img {
   display: grid;
   grid-template-columns: 5% 5%;
   margin-block-start: 0.2em;
+  /* top:2vw;
+  left:30vw */
 }
 
 #accuracy_board {
@@ -131,14 +133,14 @@ img {
 }
 
 #alien_container1 {
-  width: 15%;
+  width: 10%;
 }
 
 #alien_container2 {
-  width: 15%;
+  width: 10%;
 }
 #rotten_container {
-  width: 15%;
+  width: 10%;
 }
 
 /* Positions */

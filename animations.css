@@ -87,15 +87,6 @@
   }
 }
 
-@keyframes pulse2 {
-  0% {
-    scale: 0.9;
-  }
-  100% {
-    scale: 1.1;
-  }
-}
-
 @keyframes gray_shake {
   25% {
     rotate: -45deg;
@@ -110,6 +101,47 @@
     rotate: 45deg;
     filter: grayscale(100%);
   }
+}
+
+@keyframes time_out{
+0%{
+  scale: 1 1;
+  background-color: limegreen;
+}
+50%{
+  background-color: yellow;
+}
+100%{
+  scale: 1 0;
+  background-color: red;
+}
+}
+
+.shrink{
+  animation-name: time_out;
+  animation-duration: 4s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+#time_container{
+position: absolute;
+width: 4vw;
+height: 19vw;
+top: 6vw;
+left: 90vw;
+
+}
+
+#time_sprite{
+width: 4vw;
+height: 19vw;
+top: 6vw;
+left: 90vw;
+transform-origin: 50% 100%;
+background-color: limegreen;
+border: 1px solid black;
 }
 
 /* CLASSES */
@@ -201,7 +233,7 @@
 }
 
 .gainStuff {
-  animation-name: pulse2;
+  animation-name: pulse1;
   animation-iteration-count: 1;
   animation-duration: 0.2s;
   animation-direction: alternate;
