@@ -119,7 +119,7 @@
 
 .shrink{
   animation-name: time_out;
-  animation-duration: 4s;
+  animation-duration: 10s;
   animation-iteration-count: 1;
   animation-timing-function: linear;
   animation-fill-mode: forwards;

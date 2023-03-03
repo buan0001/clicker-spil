@@ -9,6 +9,7 @@ let totalClickz = 0;
 let goodClickz = 0;
 let accuracy = 0
 let finalScore = 0
+let isGameRunning = 0;
 
 function startScreen() {
   console.log("startup");
@@ -29,6 +30,8 @@ function startUp() {
   time.querySelector("#time_sprite") .classList.add("shrink");
   time.addEventListener("animationend", stopThings);
 
+  isGameRunning = 1
+  // restartGame();
   addAnimations();
   registerClick();
   addPositions();
@@ -82,11 +85,12 @@ function addPositions() {
 
 function finishAnimation() {
   console.log("finishAnimation");
-  document.querySelectorAll(".good").forEach((container) => container.addEventListener("animationend", newFall));
+  if (isGameRunning){ document.querySelectorAll(".good").forEach((container) => container.addEventListener("animationend", newFall));
   // document.querySelectorAll(".bad").forEach((container) => container.addEventListener("animationend", newLine));
   document.querySelector("#alien_container1").addEventListener("animationend", newLine);
   document.querySelector("#alien_container2").addEventListener("animationend", newLine);
   document.querySelector("#rotten_container").addEventListener("animationend", newFall);
+}
 }
 
 function newFall() {
@@ -172,7 +176,16 @@ function restartGood() {
   good.querySelector("img").classList.remove("click_good");
   good.classList.remove("paused");
   good.addEventListener("mousedown", clickGood);
-  newFall.call(this);
+  if (isGameRunning){
+    console.log("????????????")
+    console.log("????????????")
+    console.log("????????????")
+    console.log("????????????")
+    console.log("????????????")
+    console.log("????????????")
+    console.log("????????????")
+    console.log("????????????")
+  newFall.call(this);}
 }
 
 function clickBad() {
@@ -211,9 +224,9 @@ function restartBad() {
   bad.classList.remove("paused");
   bad.querySelector("img").classList.remove("click_bad");
   bad.addEventListener("mousedown", clickBad);
-  if (bad == document.querySelector("#rotten_container")) {
+  if (isGameRunning && bad == document.querySelector("#rotten_container")) {
     newFall.call(this);
-  } else {
+  } else if (isGameRunning) {
     newLine.call(this);
   }
 }
@@ -225,9 +238,10 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  // if (points >= 20) {
-  //   youWin();
-  // }
+  if (points >= 2) {
+    youWin();
+    stopThings();
+  }
 }
 
 function removePoints() {
@@ -291,6 +305,7 @@ function displayClickz() {
 
 function stopThings() {
   console.log("startOver");
+  isGameRunning = 0;
   removeAnimations();
   removeEvents();
   document.querySelector("#time_sprite").classList.remove("shrink");
@@ -320,7 +335,8 @@ function youWin() {
   document.querySelector("#level_complete").classList.remove("hidden");
   document.querySelector("#final_score2").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
-  document.querySelector("#win_over").addEventListener("click", goToStart);
+  document.querySelector("#start_over1").addEventListener("click", goToStart);
+  document.querySelector("#win_over").addEventListener("click", restartGame);
   document.querySelector("#win_over").addEventListener("mouseover", soundButton);
 }
 
@@ -333,8 +349,15 @@ function youLose() {
   document.querySelector("#game_over").classList.remove("hidden");
   document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
-  document.querySelector("#lose_over").addEventListener("click", goToStart);
+  document.querySelector("#start_over2").addEventListener("click", goToStart);
+  document.querySelector("#lose_over").addEventListener("click", restartGame);
   document.querySelector("#lose_over").addEventListener("mouseover", soundButton);
+}
+
+function goToStart(){
+ document.querySelector("#game_over").classList.add("hidden");
+ document.querySelector("#level_complete").classList.add("hidden");
+ document.querySelector("#start").classList.remove("hidden");
 }
 
 function soundDefeat() {
@@ -343,7 +366,7 @@ function soundDefeat() {
   sound.play();
 }
 
-function goToStart() {
+function restartGame() {
   resetVariables();
   gainHp();
   displayPoints();
