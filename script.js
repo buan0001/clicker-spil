@@ -1,7 +1,7 @@
 "use strict";
 
-// window.addEventListener("load", startScreen);
-window.addEventListener("load", startUp);
+window.addEventListener("load", startScreen);
+// window.addEventListener("load", startUp);
 
 let points = 0;
 let hp = 3;
@@ -25,8 +25,8 @@ function soundButton() {
 }
 
 function startUp() {
-  let time = document.querySelector("#time_sprite");
-  time.classList.add("shrink");
+  let time = document.querySelector("#time_container");
+  time.querySelector("#time_sprite") .classList.add("shrink");
   time.addEventListener("animationend", stopThings);
 
   addAnimations();

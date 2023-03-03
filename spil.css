@@ -27,12 +27,6 @@ img {
   pointer-events: all;
 }
 
-#start {
-  grid-area: 1 / 1;
-  background-image: url(grafik/start.jpg);
-  background-size: cover;
-}
-
 #elements {
   grid-area: 1 / 1;
   overflow: hidden;
@@ -48,23 +42,63 @@ img {
 
 #start {
   grid-area: 1 / 1;
-  background-color: black;
+  background-image: url(grafik/start.jpg);
   z-index: 100;
+  background-size: cover;
+  display: grid;
+  /* justify-content: center; */
+  /* align-content: center; */
+  /* grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr; */
 }
 
 #game_over {
   grid-area: 1 / 1;
-  background-color: red;
+  background-image: url(grafik/game_over.jpg);
+  background-size: cover;
   z-index: 100;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 }
 
 #level_complete {
   grid-area: 1 / 1;
-  background-color: green;
+  background-image: url(grafik/level_complete.jpg);
+  background-size: cover;
   z-index: 100;
+  display: grid;
+  justify-content: center;
+  align-content: center;
 }
 
-.hidden {
+h2 {
+  position: relative;
+  font-size: 4em;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: red;
+  margin: 0;
+  /* top: 10vw;
+  align-content: center;
+  justify-content: center; */
+}
+
+button {
+  padding: 0.5em 1em;
+  font-size: 2em;
+  margin: auto;
+  background-color: red;
+  color: #fff4bf;
+  border: 2px solid blue;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.hidden,
+#level_complete.hidden,
+#game_over.hidden,
+#start.hidden {
   display: none;
 }
 
@@ -147,7 +181,7 @@ img {
 .vertical1 {
   left: 2vw;
 }
-.vertical2{
+.vertical2 {
   left: 11vw;
 }
 .vertical3 {
@@ -175,30 +209,30 @@ img {
   left: 90vw;
 }
 
-.horizontal1{
-  top:10vh;
+.horizontal1 {
+  top: 10vh;
 }
-.horizontal2{
-  top:20vh
+.horizontal2 {
+  top: 20vh;
 }
-.horizontal3{
-  top:30vh
+.horizontal3 {
+  top: 30vh;
 }
-.horizontal4{
-  top:40vh
+.horizontal4 {
+  top: 40vh;
 }
-.horizontal5{
-  top:50vh
+.horizontal5 {
+  top: 50vh;
 }
-.horizontal6{
-  top:60vh
+.horizontal6 {
+  top: 60vh;
 }
-.horizontal7{
-  top:70vh
+.horizontal7 {
+  top: 70vh;
 }
-.horizontal8{
-  top:80vh
+.horizontal8 {
+  top: 80vh;
 }
-.horizontal9{
-  top:90vh
+.horizontal9 {
+  top: 90vh;
 }
