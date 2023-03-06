@@ -247,7 +247,7 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  if (points >= 50) {
+  if (points >= 1) {
     youWin();
   }
 }
