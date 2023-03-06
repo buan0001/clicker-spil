@@ -1,6 +1,6 @@
 "use strict";
 
-window.addEventListener("load", startScreen);
+window.addEventListener("load", startButtons);
 // window.addEventListener("load", startUp);
 
 let points = 0;
@@ -11,21 +11,17 @@ let accuracy = 0;
 let finalScore = 0;
 let isGameRunning = 0;
 
-function startScreen() {
-  console.log("startup");
-  buttons();
-  document.querySelector("#press_start").addEventListener("mouseover", soundButton);
-  document.querySelector("#press_start").addEventListener("click", startUp);
-}
+function startButtons() {
+  let pressStart = document.querySelector("#press_start");
+  pressStart.addEventListener("mouseover", soundButton);
+  pressStart.addEventListener("click", startUp);
 
-function buttons() {
   document.querySelector("#start_over1").addEventListener("click", goToStart);
+  document.querySelector("#start_over2").addEventListener("click", goToStart);
 
   let winRestart = document.querySelector("#win_over");
   winRestart.addEventListener("click", restartGame);
   winRestart.addEventListener("mouseover", soundButton);
-
-  document.querySelector("#start_over2").addEventListener("click", goToStart);
 
   let loseRestart = document.querySelector("#lose_over");
   loseRestart.addEventListener("click", restartGame);
@@ -237,8 +233,7 @@ function restartBad() {
   bad.classList.remove("paused");
   bad.querySelector("img").classList.remove("click_bad");
   bad.addEventListener("mousedown", clickBad);
-  if (isGameRunning && bad.id == rotten_container) {
-    // document.querySelector("#rotten_container")) {
+  if (isGameRunning && bad.id == "rotten_container") {
     newFall.call(this);
   } else if (isGameRunning) {
     newLine.call(this);
@@ -252,7 +247,7 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  if (points >= 2) {
+  if (points >= 50) {
     youWin();
   }
 }
@@ -342,7 +337,8 @@ function youWin() {
   sound.play();
 
   document.querySelector("#level_complete").classList.remove("hidden");
-  document.querySelector("#final_score2").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#final_score2").innerHTML =
+    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
   resetGame();
   // document.querySelector("#start_over1").addEventListener("click", goToStart);
@@ -359,7 +355,8 @@ function youLose() {
   sound.play();
 
   document.querySelector("#game_over").classList.remove("hidden");
-  document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#final_score1").innerHTML =
+    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
   resetGame();
   // document.querySelector("#start_over2").addEventListener("click", goToStart);

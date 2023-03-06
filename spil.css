@@ -45,10 +45,14 @@ img {
 #start {
   grid-area: 1 / 1;
   background-image: url(grafik/start.jpg);
-  z-index: 100;
+  /* grid-template-rows: 1fr 1fr 1fr; */
   background-size: cover;
+  z-index: 100;
   display: grid;
   justify-content: center;
+    align-content: center;
+  text-align: center;
+
 }
 
 #game_over {
@@ -72,71 +76,90 @@ img {
   align-content: center;
 }
 
-#start div, #game_over div, #level_complete div {
+#start div,
+#game_over div,
+#level_complete div {
+  font-size: 2.5em;
+  margin: auto;
+  padding: auto;
+  font-weight: bold;
+  line-height: 1.5em;
+  color: #ffffff;
+  color: #141010;
+  text-align: center;
   /* grid-area: 1 / 1; */
-font-size: 2em;
-margin:2em;
-font-family: Arial, Helvetica, sans-serif;
-font-weight: bold;
-line-height: 1.5em;
-max-height: 10vw;
-color: #ffffff;
-text-align: center;
-word-wrap: break-word;
+  /* padding-bottom: 2em; */
+  /* max-height: 15vw; */
 
-filter: brightness(80%);
-backdrop-filter: blur(10px);
--webkit-backdrop-filter: blur(10px);
-text-shadow: 10px;
 
-/* text-decoration-thickness: 100px;
-text-orientation: sideways-right;
-text-shadow: 10px 10px yellow; */
-
+  backdrop-filter: contrast(90%) blur(5px);
+  border-radius: 10px;
 }
 
 h2 {
-  /* position: absolute; */
-  font-size: 4em;
+  position: relative;
+  font-size: 6em;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   color: limegreen;
-  text-shadow: 10px;
-  margin: auto;
-  padding: auto;
-  border: auto;
-  /* top:10px; */
 
-    /* -webkit-backdrop-filter: blur(5px); */
-  backdrop-filter: blur(90%);
-
+  margin-bottom: 1em;
+  margin-top: auto;
+  
+  backdrop-filter: blur(5px);
+  border-radius: 50px;
 }
 
-#game_over button, #level_complete button{
-   position: relative;
-  font-size: 2em;
-  margin: auto;
+/* #game_over button,
+#level_complete button {
+  position: relative;
+  font-size: 3em;
+  margin: 0.3em;
   padding: auto;
-  /* cursor: pointer; */
+  cursor: pointer;
 
-  bottom: 0.1vw;
-  background-color: rgb(150, 64, 7);
+  bottom: 1em;
+  background-color: #680747;
   color: #fff4bf;
+  
+
   border: 2px solid rgb(4, 4, 41);
   cursor: pointer;
   border-radius: 10px;
-}
+} */
+
 
 button {
-  position: relative;
-  padding: 0.5em 1em;
-  font-size: 2em;
+  /* position: relative; */
+  padding: 0.4em 1em;
+  font-size: 3em;
   margin: auto;
-  bottom: 5vw;
-  background-color: rgb(150, 64, 7);
+  bottom: 10vw;
+  background-color: #680747;
   color: #fff4bf;
+  /* background-color: #141010;
+  color: #680747; */
+
+
   border: 2px solid rgb(4, 4, 41);
   cursor: pointer;
   border-radius: 10px;
+}
+
+
+.first-color { 
+	background: #f70776; 
+}
+	
+.second-color { 
+	background: #c3195d; 
+}
+
+.third-color { 
+	background: #680747; 
+}
+
+.fourth-color { 
+	background: #141010; 
 }
 
 .hidden,
@@ -154,49 +177,55 @@ button {
 
   color: white;
 
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 0% 0% 0% 0%;
+  grid-template-columns: 1fr 1fr 2fr 1fr;
+  grid-template-rows: 3em;
   font-size: 2em;
 
   pointer-events: none;
 }
 
-#hp_board {
-  
-  display: grid;
-  grid-template-columns: 0.3fr 0.3fr 0.3fr;
-   grid-template-rows: 0.5fr 0.5fr 0.5fr;
-  /* position: absolute; */
-  /* top: 100px;
-  left: 50vw; */
-  /* margin-block-start: 0.2em;
-  inset-block-start: 50px; */
-
-}
-
 #score_board {
-  /* position: absolute; */
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* position: absolute; */
+  grid-template-columns: 0.3fr 0.3fr;
   align-items: center;
   justify-items: start;
-  /* white-space: nowrap; */
-}
-
-#time_board {
-  display: grid;
-  grid-template-columns: 0.1fr;
-  grid-template-rows: 0.1fr;
-  
-  
-  /* top:2vw;
-  left:30vw */
 }
 
 #accuracy_board {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-block-start: 0.2em;
+  grid-template-columns: 0.35fr 0.35fr;
+  align-items: center;
+  justify-items: start;
+}
+
+#hp_board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  /* grid-template-rows: 1px; */
+}
+
+#time_board {
+  display: grid;
+  align-items: center;
+}
+
+/* #time_container{
+position: absolute; */
+/* top: 1vw; */
+/* left: 50vw; */
+/* width: 1fr; */
+/* height: 5em;
+} */
+
+#time_sprite {
+  width: 50%;
+  height: 2em;
+  transform-origin: 0% 0%;
+  background-color: limegreen;
+  border: 1px solid black;
+  inset-block-start: 50px;
 }
 
 /* containers */
@@ -214,7 +243,7 @@ button {
 #banana_container {
   width: 10%;
   animation-delay: 5s;
-  top: -20%
+  top: -20%;
 }
 
 #air_container {
