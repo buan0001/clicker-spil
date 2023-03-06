@@ -7,15 +7,29 @@ let points = 0;
 let hp = 3;
 let totalClickz = 0;
 let goodClickz = 0;
-let accuracy = 0
-let finalScore = 0
+let accuracy = 0;
+let finalScore = 0;
 let isGameRunning = 0;
 
 function startScreen() {
   console.log("startup");
+  buttons();
   document.querySelector("#press_start").addEventListener("mouseover", soundButton);
-  // document.querySelector("#press_start").addEventListener("mouseleave", soundButton);
   document.querySelector("#press_start").addEventListener("click", startUp);
+}
+
+function buttons() {
+  document.querySelector("#start_over1").addEventListener("click", goToStart);
+
+  let winRestart = document.querySelector("#win_over");
+  winRestart.addEventListener("click", restartGame);
+  winRestart.addEventListener("mouseover", soundButton);
+
+  document.querySelector("#start_over2").addEventListener("click", goToStart);
+
+  let loseRestart = document.querySelector("#lose_over");
+  loseRestart.addEventListener("click", restartGame);
+  loseRestart.addEventListener("mouseover", soundButton);
 }
 
 function soundButton() {
@@ -27,11 +41,11 @@ function soundButton() {
 
 function startUp() {
   let time = document.querySelector("#time_container");
-  time.querySelector("#time_sprite") .classList.add("shrink");
-  time.addEventListener("animationend", stopThings);
+  time.querySelector("#time_sprite").classList.add("shrink");
+  time.addEventListener("animationend", timeIsUp);
 
-  isGameRunning = 1
-  // restartGame();
+  isGameRunning = 1;
+
   addAnimations();
   registerClick();
   addPositions();
@@ -43,24 +57,28 @@ function startUp() {
 function soundBackground() {
   console.log("soundBackground");
 
-  let lose = document.querySelector("#sound_lose")
+  let lose = document.querySelector("#sound_lose");
   lose.currentTime = 0;
   lose.pause();
+
+  let win = document.querySelector("#sound_win");
+  win.currentTime = 0;
+  win.pause();
 
   let sound = document.querySelector("#sound_background");
   sound.volume = 1;
   sound.play();
-  // sound.loop = true;
+  sound.loop = true;
 }
 
 function addAnimations() {
   console.log("addAnimations");
   document.querySelectorAll(".sprite").forEach((sprite) => sprite.classList.add("rotate2"));
-  document.querySelectorAll(".good").forEach((container) => container.classList.add("falling1"));
-  // document.querySelectorAll(".bad").forEach((container) => container.classList.add("line1"));
+  document.querySelectorAll(".fall").forEach((container) => container.classList.add("falling1"));
+
   document.querySelector("#alien_container1").classList.add("line1");
   document.querySelector("#alien_container2").classList.add("line4");
-  document.querySelector("#rotten_container").classList.add("falling3");
+  // document.querySelector("#rotten_container").classList.add("falling3");
 }
 
 function registerClick() {
@@ -72,7 +90,7 @@ function registerClick() {
 
 function addPositions() {
   console.log("addPositions");
-  // document.querySelectorAll(".container").forEach((container) => container.classList.add())
+
   document.querySelector("#water_container").classList.add("vertical1");
   document.querySelector("#air_container").classList.add("vertical3");
   document.querySelector("#fuel_container").classList.add("vertical5");
@@ -80,22 +98,24 @@ function addPositions() {
   document.querySelector("#rotten_container").classList.add("vertical9");
   document.querySelector("#alien_container1").classList.add("horizontal1");
   document.querySelector("#alien_container2").classList.add("horizontal5");
-  // document.querySelector("#rotten_container").classList.add("horizontal2");
 }
 
 function finishAnimation() {
   console.log("finishAnimation");
-  if (isGameRunning){ document.querySelectorAll(".good").forEach((container) => container.addEventListener("animationend", newFall));
-  // document.querySelectorAll(".bad").forEach((container) => container.addEventListener("animationend", newLine));
-  document.querySelector("#alien_container1").addEventListener("animationend", newLine);
-  document.querySelector("#alien_container2").addEventListener("animationend", newLine);
-  document.querySelector("#rotten_container").addEventListener("animationend", newFall);
-}
+  if (isGameRunning) {
+    document.querySelectorAll(".fall").forEach((container) => container.addEventListener("animationend", newFall));
+    // document.querySelectorAll(".bad").forEach((container) => container.addEventListener("animationend", newLine));
+    document.querySelector("#alien_container1").addEventListener("animationend", newLine);
+    document.querySelector("#alien_container2").addEventListener("animationend", newLine);
+    // document.querySelector("#rotten_container").addEventListener("animationend", newFall);
+  }
 }
 
 function newFall() {
   // console.log("Newfall")
   let pos = this;
+  if (pos.id == "banana_container") {
+  }
   pos.classList.remove("falling1", "falling2", "falling3");
   let f = Math.ceil(Math.random() * 3);
   pos.offsetLeft;
@@ -176,16 +196,9 @@ function restartGood() {
   good.querySelector("img").classList.remove("click_good");
   good.classList.remove("paused");
   good.addEventListener("mousedown", clickGood);
-  if (isGameRunning){
-    console.log("????????????")
-    console.log("????????????")
-    console.log("????????????")
-    console.log("????????????")
-    console.log("????????????")
-    console.log("????????????")
-    console.log("????????????")
-    console.log("????????????")
-  newFall.call(this);}
+  if (isGameRunning) {
+    newFall.call(this);
+  }
 }
 
 function clickBad() {
@@ -224,7 +237,8 @@ function restartBad() {
   bad.classList.remove("paused");
   bad.querySelector("img").classList.remove("click_bad");
   bad.addEventListener("mousedown", clickBad);
-  if (isGameRunning && bad == document.querySelector("#rotten_container")) {
+  if (isGameRunning && bad.id == rotten_container) {
+    // document.querySelector("#rotten_container")) {
     newFall.call(this);
   } else if (isGameRunning) {
     newLine.call(this);
@@ -240,12 +254,11 @@ function addPoints() {
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
   if (points >= 2) {
     youWin();
-    stopThings();
   }
 }
 
 function removePoints() {
-  points -= 15;
+  points -= 5;
   addClickz();
   document.querySelector("#score_image").classList.add("loseStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
@@ -303,12 +316,9 @@ function displayClickz() {
 //   }
 // }
 
-function stopThings() {
-  console.log("startOver");
-  isGameRunning = 0;
-  removeAnimations();
-  removeEvents();
-  document.querySelector("#time_sprite").classList.remove("shrink");
+function timeIsUp() {
+  console.log("timeIsUp");
+
   if (finalScore >= 1) {
     youWin();
   } else {
@@ -331,39 +341,55 @@ function youWin() {
   let sound = document.querySelector("#sound_win");
   sound.play();
 
-  // finalScore = (accuracy + 1) * points;
   document.querySelector("#level_complete").classList.remove("hidden");
   document.querySelector("#final_score2").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
 
-  document.querySelector("#start_over1").addEventListener("click", goToStart);
-  document.querySelector("#win_over").addEventListener("click", restartGame);
-  document.querySelector("#win_over").addEventListener("mouseover", soundButton);
+  resetGame();
+  // document.querySelector("#start_over1").addEventListener("click", goToStart);
+  // document.querySelector("#win_over").addEventListener("click", restartGame);
+  // document.querySelector("#win_over").addEventListener("mouseover", soundButton);
 }
 
 function youLose() {
   console.log("You lose :(");
 
-  soundDefeat();
-
-  // finalScore = (accuracy + 1) * points;
-  document.querySelector("#game_over").classList.remove("hidden");
-  document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
-
-  document.querySelector("#start_over2").addEventListener("click", goToStart);
-  document.querySelector("#lose_over").addEventListener("click", restartGame);
-  document.querySelector("#lose_over").addEventListener("mouseover", soundButton);
-}
-
-function goToStart(){
- document.querySelector("#game_over").classList.add("hidden");
- document.querySelector("#level_complete").classList.add("hidden");
- document.querySelector("#start").classList.remove("hidden");
-}
-
-function soundDefeat() {
+  // soundDefeat();
   document.querySelector("#sound_background").pause();
   let sound = document.querySelector("#sound_lose");
   sound.play();
+
+  document.querySelector("#game_over").classList.remove("hidden");
+  document.querySelector("#final_score1").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+
+  resetGame();
+  // document.querySelector("#start_over2").addEventListener("click", goToStart);
+  // document.querySelector("#lose_over").addEventListener("click", restartGame);
+  // document.querySelector("#lose_over").addEventListener("mouseover", soundButton);
+}
+
+function goToStart() {
+  console.log("gotostart");
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
+  document.querySelector("#start").classList.remove("hidden");
+}
+
+// function soundDefeat() {
+//   document.querySelector("#sound_background").pause();
+//   let sound = document.querySelector("#sound_lose");
+//   sound.play();
+// }
+
+function resetGame() {
+  isGameRunning = 0;
+
+  document.querySelector("#time_sprite").classList.remove("shrink");
+
+  resetVariables();
+  gainHp();
+  displayPoints();
+  removeAnimations();
+  removeEvents();
 }
 
 function restartGame() {

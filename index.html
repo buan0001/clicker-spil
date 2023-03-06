@@ -13,16 +13,16 @@
       <div id="game">
         <div id="background"></div>
         <div id="elements">
-          <div id="water_container" class="good container">
+          <div id="water_container" class="good fall container">
             <img id="water_sprite" class="sprite" src="grafik/water1.png" />
           </div>
-          <div id="banana_container" class="good container">
+          <div id="banana_container" class="good fall container">
             <img id="banana_sprite" class="sprite" src="grafik/banana1.png" />
           </div>
-          <div id="air_container" class="good container">
+          <div id="air_container" class="good fall container">
             <img id="air_sprite" class="sprite" src="grafik/oxygen-tank.png" />
           </div>
-          <div id="fuel_container" class="good container">
+          <div id="fuel_container" class="good fall container">
             <img id="fuel_sprite" class="sprite" src="grafik/gasoline.png" />
           </div>
           <div id="alien_container1" class="container alien bad">
@@ -31,7 +31,7 @@
           <div id="alien_container2" class="container alien bad">
             <img id="alien_sprite2" class="sprite" src="grafik/monster.png" />
           </div>
-          <div id="rotten_container" class="container fast bad">
+          <div id="rotten_container" class="container fall fast bad">
             <img id="rotten_sprite" class="sprite" src="grafik/rotten_b.png" />
           </div>
         </div>
@@ -39,6 +39,10 @@
           <div id="score_board">
             <img id="score_image" src="grafik/product-bag.png" />
             <span id="score_count">0</span>
+          </div>
+              <div id="accuracy_board">
+            <img src="grafik/dart-board.png" />
+            <span id="accuracy_count">???</span>
           </div>
           <div id="time_board">
             <div id="time_container">
@@ -52,10 +56,7 @@
             <img id="hp2" class="alivege" src="grafik/astronaut.png" />
             <img id="hp3" class="alivege" src="grafik/astronaut.png" />
           </div>
-          <div id="accuracy_board">
-            <img src="grafik/dart-board.png" />
-            <span id="accuracy_count">???</span>
-          </div>
+      
         </div>
         <div id="source">
           <p>
@@ -77,19 +78,22 @@
       </div>
       <div id="start" class="">
         <h2>ASTEROID SCAVENGER</h2>
-        <button id="press_start" class="alivege">START</button>
+        <div>Your ship crashed on an asteroid orbiting the intergalactic highway <br> 
+        Collect the necessary items in order to survive and escape <br>
+        Avoid the hostile aliens to stay alive </div>
+        <button id="press_start" class="buttonPulse">START</button>
       </div>
       <div id="game_over" class="hidden">
         <h2>cya loser 😎</h2>
-        <h3 id="final_score1"></h3>
-        <button id="lose_over" class="alivege">Go again?</button>
-        <button id="start_over1" class="">Main menu</button>
+        <div id="final_score1"></div>
+        <button id="lose_over" class="buttonPulse">Go again?</button>
+        <button id="start_over1" class="buttonPulse"> Main menu LOSE</button>
       </div>
       <div id="level_complete" class="hidden">
         <h2>YOU WIN 🙌👍</h2>
-        <h3 id="final_score2"></h3>
-        <button id="win_over" class="alivege">Go again?</button>
-        <button id="start_over2" class="">Main menu</button>
+        <div id="final_score2"></div>
+        <button id="win_over" class="buttonPulse">Go again?</button>
+        <button id="start_over2" class="buttonPulse">Main menu WIN</button>
       </div>
     </div>
     <div id="sound">
