@@ -9,7 +9,7 @@ let goodClickz = 0;
 let accuracy;
 let finalScore;
 let isGameRunning = false;
-let highScore;
+let highScore = localStorage.getItem("highScore")
 
 function startButtons() {
   let pressStart = document.querySelector("#press_start");
@@ -331,15 +331,17 @@ function youWin() {
   let sound = document.querySelector("#sound_win");
   sound.play();
 
-  if (finalScore > highScore || highScore == undefined) {
+
+  if (finalScore > highScore || highScore == null) {
     highScore = finalScore;
+    localStorage.setItem("highScore", parseFloat(highScore.toFixed(2)))
     console.log("HIGHSCORE=======================");
   }
-  document.querySelector("#highscore_win").textContent = "Your highscore is: " + parseFloat(highScore.toFixed(2));
-
+  
   document.querySelector("#level_complete").classList.remove("hidden");
   document.querySelector("#score_win").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "%";
   document.querySelector("#final_win").textContent = "Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#highscore_win").textContent = "Your highscore is: " + localStorage.getItem("highScore");
 
   resetGame();
 }
@@ -351,15 +353,16 @@ function youLose() {
   let sound = document.querySelector("#sound_lose");
   sound.play();
 
-  if (finalScore > highScore || highScore == undefined) {
+  if (finalScore > highScore || highScore == null) {
     highScore = finalScore;
+    localStorage.setItem("highScore", parseFloat(highScore.toFixed(2)))
     console.log("HIGHSCORE=======================");
   }
-  document.querySelector("#highscore_lose").textContent = "Your highscore is: " + parseFloat(highScore.toFixed(2));
-
+  
   document.querySelector("#game_over").classList.remove("hidden");
   document.querySelector("#score_lose").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "%";
   document.querySelector("#final_lose").innerHTML = "Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#highscore_lose").textContent = "Your highscore is: " + localStorage.getItem("highScore");
 
   resetGame();
 }
@@ -398,7 +401,6 @@ function removeEvents() {
 }
 
 function resetVariables() {
-  console.log("RESET!!!!!!!!!!!!!!!");
   points = 0;
   hp = 3;
   goodClickz = 0;
