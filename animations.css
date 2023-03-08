@@ -125,21 +125,43 @@
 }
 }
 
-.shrink{
-  animation-name: time_out;
-  animation-duration: 30s;
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
+@keyframes fade {
+  0%{opacity: 1;}
+  100%{
+  opacity: 0;}
 }
 
 
 /* CLASSES */
 
+.fade_out{
+    animation-name: fade;
+  animation-duration: .3s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.fade_in{
+    animation-name: fade;
+  animation-duration: .3s;
+  animation-iteration-count: 1;
+  animation-direction: reverse;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.shrink{
+  animation-name: time_out;
+  animation-duration: 60s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
 .falling1 {
   animation-name: falling1;
   animation-duration: 2s;
-  animation-iteration-count: 2;
+  animation-iteration-count: 1;
   animation-timing-function: ease-in;
 }
 
@@ -251,5 +273,9 @@
 }
 .paused {
   animation-play-state: paused;
+  pointer-events: none;
+}
+
+.opague{
   pointer-events: none;
 }

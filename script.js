@@ -9,7 +9,7 @@ let goodClickz = 0;
 let accuracy;
 let finalScore;
 let isGameRunning = false;
-let highScore = localStorage.getItem("highScore")
+let highScore = localStorage.getItem("highScore");
 
 function startButtons() {
   let pressStart = document.querySelector("#press_start");
@@ -49,8 +49,31 @@ function startUp() {
   registerClick();
   addPositions();
   finishAnimation();
-  hideScreens();
   startTimer();
+
+  // Beklager, havde allerede lavet state machine. Alt der har noget med "fade" at gøre er (ekstra) grimt
+  // Ville ikke tilføje flere funktioner og skulle ændre i det
+
+  document.querySelector("#elements").classList.remove("hidden");
+
+  let start = document.querySelector("#start");
+  start.classList.remove("fade_in");
+  start.offsetLeft;
+  start.classList.add("fade_out");
+  start.addEventListener("animationend", hideScreens);
+
+  let gameOver = document.querySelector("#game_over");
+  gameOver.classList.remove("fade_in");
+  gameOver.offsetLeft;
+  gameOver.classList.add("fade_out");
+  gameOver.addEventListener("animationend", hideScreens);
+
+  let levelComplete = document.querySelector("#level_complete");
+  levelComplete.classList.remove("fade_in");
+  levelComplete.offsetLeft;
+  levelComplete.classList.add("fade_out");
+  levelComplete.addEventListener("animationend", hideScreens);
+
 }
 
 function soundBackground() {
@@ -108,9 +131,22 @@ function finishAnimation() {
 }
 
 function hideScreens() {
-  document.querySelector("#game_over").classList.add("hidden");
-  document.querySelector("#level_complete").classList.add("hidden");
-  document.querySelector("#start").classList.add("hidden");
+  let start = document.querySelector("#start");
+  start.removeEventListener("animationend", hideScreens);
+  start.classList.remove("fade_out");
+  start.classList.add("hidden");
+
+  let gameOver = document.querySelector("#game_over");
+  gameOver.removeEventListener("animationend", hideScreens);
+  gameOver.classList.remove("fade_out");
+  gameOver.classList.add("hidden");
+  gameOver.classList.remove("opague");
+
+  let levelComplete = document.querySelector("#level_complete");
+  levelComplete.removeEventListener("animationend", hideScreens);
+  levelComplete.classList.remove("fade_out");
+  levelComplete.classList.add("hidden");
+  levelComplete.classList.remove("opague");
 }
 
 function startTimer() {
@@ -196,8 +232,8 @@ function restartGood() {
   let good = this;
   good.removeEventListener("animationend", restartGood);
   good.classList.remove("paused");
-   good.classList.remove("falling1", "falling2", "falling3");
-   good.querySelector("img").classList.remove("click_good");
+  good.classList.remove("falling1", "falling2", "falling3");
+  good.querySelector("img").classList.remove("click_good");
 
   if (isGameRunning) {
     good.addEventListener("mousedown", clickGood);
@@ -252,7 +288,7 @@ function restartBad() {
 
   bad.classList.remove("line1", "line2", "line3", "line4");
   bad.classList.remove("falling1", "falling2", "falling3");
-  
+
   if (isGameRunning && bad.id == "rotten_container") {
     newFall.call(this);
   } else if (isGameRunning) {
@@ -267,9 +303,6 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  if (points >= 5) {
-    youWin();
-  }
 }
 
 function removePoints() {
@@ -317,11 +350,13 @@ function displayClickz() {
 function timeIsUp() {
   console.log("timeIsUp");
 
-  if (finalScore >= 35) {
+  if (finalScore >= 70) {
     youWin();
   } else {
+  
     youLose();
   }
+  document.querySelector("#game_over").addEventListener("animationend", youLose);
 }
 
 function youWin() {
@@ -331,14 +366,16 @@ function youWin() {
   let sound = document.querySelector("#sound_win");
   sound.play();
 
-
   if (finalScore > highScore || highScore == null) {
     highScore = finalScore;
-    localStorage.setItem("highScore", parseFloat(highScore.toFixed(2)))
+    localStorage.setItem("highScore", parseFloat(highScore.toFixed(2)));
     console.log("HIGHSCORE=======================");
   }
-  
+
+  document.querySelector("#elements").classList.add("hidden");
   document.querySelector("#level_complete").classList.remove("hidden");
+  document.querySelector("#level_complete").classList.add("fade_in");
+
   document.querySelector("#score_win").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "%";
   document.querySelector("#final_win").textContent = "Total score: " + parseFloat(finalScore.toFixed(2));
   document.querySelector("#highscore_win").textContent = "Your highscore is: " + localStorage.getItem("highScore");
@@ -355,11 +392,13 @@ function youLose() {
 
   if (finalScore > highScore || highScore == null) {
     highScore = finalScore;
-    localStorage.setItem("highScore", parseFloat(highScore.toFixed(2)))
+    localStorage.setItem("highScore", parseFloat(highScore.toFixed(2)));
     console.log("HIGHSCORE=======================");
   }
-  
+
   document.querySelector("#game_over").classList.remove("hidden");
+  document.querySelector("#game_over").classList.add("fade_in");
+
   document.querySelector("#score_lose").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "%";
   document.querySelector("#final_lose").innerHTML = "Total score: " + parseFloat(finalScore.toFixed(2));
   document.querySelector("#highscore_lose").textContent = "Your highscore is: " + localStorage.getItem("highScore");
@@ -369,9 +408,24 @@ function youLose() {
 
 function goToStart() {
   console.log("gotostart");
-  document.querySelector("#game_over").classList.add("hidden");
-  document.querySelector("#level_complete").classList.add("hidden");
-  document.querySelector("#start").classList.remove("hidden");
+  
+  let gameOver = document.querySelector("#game_over");
+  gameOver.classList.remove("fade_in");
+  gameOver.offsetLeft;
+  gameOver.classList.add("fade_out");
+  gameOver.classList.add("opague");
+
+  let levelComplete = document.querySelector("#level_complete");
+  levelComplete.classList.remove("fade_in");
+  levelComplete.offsetLeft;
+  levelComplete.classList.add("fade_out");
+  levelComplete.classList.add("opague");
+
+  let start = document.querySelector("#start");
+  start.classList.remove("hidden");
+  start.classList.add("fade_in");
+
+  document.querySelector("#elements").classList.remove("hidden");
 }
 
 function resetGame() {
