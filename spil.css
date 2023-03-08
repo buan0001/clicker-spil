@@ -45,16 +45,14 @@ img {
 #start {
   grid-area: 1 / 1;
   background-image: url(grafik/start.jpg);
-  /* grid-template-rows: 1fr 1fr 1fr; */
   background-size: cover;
   z-index: 100;
   display: grid;
-    grid-template-columns: 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   justify-content: center;
-    align-content: center;
+  align-content: center;
   text-align: center;
-
 }
 
 #game_over {
@@ -63,7 +61,7 @@ img {
   background-size: cover;
   z-index: 100;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -75,12 +73,12 @@ img {
   background-image: url(grafik/level_complete.jpg);
   background-size: cover;
   z-index: 100;
-    grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   display: grid;
   justify-content: center;
   align-content: center;
-   text-align: center;
+  text-align: center;
 }
 
 #start div,
@@ -88,16 +86,28 @@ img {
 #level_complete div {
   font-size: 2.5em;
   margin: auto;
-  padding: auto;
   font-weight: bold;
   line-height: 1.5em;
   color: #ffffff;
   color: #141010;
   text-align: center;
-  /* grid-area: 1 / 1; */
-  /* padding-bottom: 2em; */
-  /* max-height: 15vw; */
 
+  -webkit-text-fill-color: whitesmoke;
+  -webkit-text-stroke: 1px #141010;
+
+  backdrop-filter: contrast(90%) blur(5px);
+  border-radius: 10px;
+}
+
+#game_over :nth-child(3),
+#level_complete :nth-child(3) {
+  font-size: 4em;
+  font-weight: bold;
+  line-height: 1.5em;
+  text-align: center;
+
+  -webkit-text-fill-color: teal;
+  -webkit-text-stroke: 1px white;
 
   backdrop-filter: contrast(90%) blur(5px);
   border-radius: 10px;
@@ -106,67 +116,38 @@ img {
 h2 {
   position: relative;
   font-size: 6em;
-  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: limegreen;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  -webkit-text-fill-color: greenyellow;
+  -webkit-text-stroke: 2px black;
 
   margin-bottom: 1em;
   margin-top: auto;
-  
+
   backdrop-filter: blur(5px);
   border-radius: 50px;
 }
 
-/* #game_over button,
-#level_complete button {
-  position: relative;
-  font-size: 3em;
-  margin: 0.3em;
-  padding: auto;
-  cursor: pointer;
+#level_complete h2 {
+  -webkit-text-fill-color: limegreen;
+}
+#game_over h2 {
+  -webkit-text-fill-color: #f70776;
+}
 
-  bottom: 1em;
-  background-color: #680747;
-  color: #fff4bf;
-  
-
-  border: 2px solid rgb(4, 4, 41);
-  cursor: pointer;
-  border-radius: 10px;
-} */
-
+#game_over #highscore_lose, #level_complete #highscore_win{
+    -webkit-text-fill-color: peru;
+  -webkit-text-stroke: 1px black;
+}
 
 button {
-  /* position: relative; */
   padding: 0.4em 1em;
   font-size: 3em;
   margin: auto;
-  bottom: 10vw;
   background-color: #680747;
   color: #fff4bf;
-  /* background-color: #141010;
-  color: #680747; */
-
-
   border: 2px solid rgb(4, 4, 41);
   cursor: pointer;
   border-radius: 10px;
-}
-
-
-.first-color { 
-	background: #f70776; 
-}
-	
-.second-color { 
-	background: #c3195d; 
-}
-
-.third-color { 
-	background: #680747; 
-}
-
-.fourth-color { 
-	background: #141010; 
 }
 
 .hidden,
@@ -193,7 +174,6 @@ button {
 
 #score_board {
   display: grid;
-  /* position: absolute; */
   grid-template-columns: 0.3fr 0.3fr;
   align-items: center;
   justify-items: start;
@@ -209,22 +189,12 @@ button {
 #hp_board {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-
-  /* grid-template-rows: 1px; */
 }
 
 #time_board {
   display: grid;
   align-items: center;
 }
-
-/* #time_container{
-position: absolute; */
-/* top: 1vw; */
-/* left: 50vw; */
-/* width: 1fr; */
-/* height: 5em;
-} */
 
 #time_sprite {
   width: 50%;
@@ -249,8 +219,6 @@ position: absolute; */
 
 #banana_container {
   width: 10%;
-  animation-delay: 5s;
-  top: -20%;
 }
 
 #air_container {

@@ -1,30 +1,35 @@
 "use strict";
 
 window.addEventListener("load", startButtons);
-// window.addEventListener("load", startUp);
 
 let points = 0;
 let hp = 3;
 let totalClickz = 0;
 let goodClickz = 0;
-let accuracy = 0;
-let finalScore = 0;
-let isGameRunning = 0;
+let accuracy;
+let finalScore;
+let isGameRunning = false;
+let highScore;
 
 function startButtons() {
   let pressStart = document.querySelector("#press_start");
-  pressStart.addEventListener("mouseover", soundButton);
   pressStart.addEventListener("click", startUp);
+  pressStart.addEventListener("mouseover", soundButton);
 
-  document.querySelector("#start_over1").addEventListener("click", goToStart);
-  document.querySelector("#start_over2").addEventListener("click", goToStart);
+  let winMenu = document.querySelector("#win_menu");
+  winMenu.addEventListener("click", goToStart);
+  winMenu.addEventListener("mouseover", soundButton);
 
-  let winRestart = document.querySelector("#win_over");
-  winRestart.addEventListener("click", restartGame);
+  let loseMenu = document.querySelector("#lose_menu");
+  loseMenu.addEventListener("click", goToStart);
+  loseMenu.addEventListener("mouseover", soundButton);
+
+  let winRestart = document.querySelector("#win_restart");
+  winRestart.addEventListener("click", startUp);
   winRestart.addEventListener("mouseover", soundButton);
 
-  let loseRestart = document.querySelector("#lose_over");
-  loseRestart.addEventListener("click", restartGame);
+  let loseRestart = document.querySelector("#lose_restart");
+  loseRestart.addEventListener("click", startUp);
   loseRestart.addEventListener("mouseover", soundButton);
 }
 
@@ -36,18 +41,16 @@ function soundButton() {
 }
 
 function startUp() {
-  let time = document.querySelector("#time_container");
-  time.querySelector("#time_sprite").classList.add("shrink");
-  time.addEventListener("animationend", timeIsUp);
+  document.querySelector("#accuracy_count").textContent = "???";
+  isGameRunning = true;
 
-  isGameRunning = 1;
-
+  soundBackground();
   addAnimations();
   registerClick();
   addPositions();
   finishAnimation();
   hideScreens();
-  soundBackground();
+  startTimer();
 }
 
 function soundBackground() {
@@ -74,7 +77,6 @@ function addAnimations() {
 
   document.querySelector("#alien_container1").classList.add("line1");
   document.querySelector("#alien_container2").classList.add("line4");
-  // document.querySelector("#rotten_container").classList.add("falling3");
 }
 
 function registerClick() {
@@ -98,20 +100,27 @@ function addPositions() {
 
 function finishAnimation() {
   console.log("finishAnimation");
-  if (isGameRunning) {
+  if ((isGameRunning = true)) {
     document.querySelectorAll(".fall").forEach((container) => container.addEventListener("animationend", newFall));
-    // document.querySelectorAll(".bad").forEach((container) => container.addEventListener("animationend", newLine));
     document.querySelector("#alien_container1").addEventListener("animationend", newLine);
     document.querySelector("#alien_container2").addEventListener("animationend", newLine);
-    // document.querySelector("#rotten_container").addEventListener("animationend", newFall);
   }
 }
 
+function hideScreens() {
+  document.querySelector("#game_over").classList.add("hidden");
+  document.querySelector("#level_complete").classList.add("hidden");
+  document.querySelector("#start").classList.add("hidden");
+}
+
+function startTimer() {
+  let time = document.querySelector("#time_container");
+  time.querySelector("#time_sprite").classList.add("shrink");
+  time.addEventListener("animationend", timeIsUp);
+}
+
 function newFall() {
-  // console.log("Newfall")
   let pos = this;
-  if (pos.id == "banana_container") {
-  }
   pos.classList.remove("falling1", "falling2", "falling3");
   let f = Math.ceil(Math.random() * 3);
   pos.offsetLeft;
@@ -120,7 +129,6 @@ function newFall() {
 }
 
 function newVertical() {
-  // console.log("newvertical")
   let pos = this;
   pos.classList.remove("vertical1", "vertical2", "vertical3", "vertical4", "vertical5", "vertical6", "vertical7", "vertical8", "vertical9", "vertical10");
   let v = Math.ceil(Math.random() * 10);
@@ -129,7 +137,6 @@ function newVertical() {
 }
 
 function newLine() {
-  // console.log("newline");
   let pos = this;
   pos.classList.remove("line1", "line2", "line3", "line4");
   let l = Math.ceil(Math.random() * 4);
@@ -139,7 +146,6 @@ function newLine() {
 }
 
 function newHeight() {
-  // console.log("newheight");
   let pos = this;
   pos.classList.remove("horizontal1", "horizontal2", "horizontal3", "horizontal4", "horizontal5", "horizontal6", "horizontal7", "horizontal8", "horizontal9", "horizontal10");
   let h = Math.ceil(Math.random() * 7);
@@ -189,10 +195,13 @@ function restartGood() {
   console.log("restartGood");
   let good = this;
   good.removeEventListener("animationend", restartGood);
-  good.querySelector("img").classList.remove("click_good");
   good.classList.remove("paused");
-  good.addEventListener("mousedown", clickGood);
+   good.classList.remove("falling1", "falling2", "falling3");
+   good.querySelector("img").classList.remove("click_good");
+
   if (isGameRunning) {
+    good.addEventListener("mousedown", clickGood);
+
     newFall.call(this);
   }
 }
@@ -203,26 +212,33 @@ function clickBad() {
   let rot2 = document.querySelector("#sound_yuck2");
   let alien = document.querySelector("#sound_alien");
   let bad = this;
+
+  addClickz();
+
   bad.removeEventListener("mousedown", clickBad);
   bad.classList.add("paused");
   bad.querySelector("img").classList.add("click_bad");
   bad.addEventListener("animationend", restartBad);
+
   if (bad == document.querySelector("#alien_container1") || bad == document.querySelector("#alien_container2")) {
     console.log("CLICKALIEN");
     alien.currentTime = 0;
     alien.play();
+
     removeHp();
   } else if (Math.random() >= 0.5) {
     console.log("CLICKROTTEN1");
-    removePoints();
     rot1.currentTime = 0;
     rot1.play();
+
+    removePoints();
   } else {
     console.log("CLICKROTTEN2");
-    removePoints();
     rot2.currentTime = 0;
     rot2.volume = 0.5;
     rot2.play();
+
+    removePoints();
   }
 }
 
@@ -233,6 +249,10 @@ function restartBad() {
   bad.classList.remove("paused");
   bad.querySelector("img").classList.remove("click_bad");
   bad.addEventListener("mousedown", clickBad);
+
+  bad.classList.remove("line1", "line2", "line3", "line4");
+  bad.classList.remove("falling1", "falling2", "falling3");
+  
   if (isGameRunning && bad.id == "rotten_container") {
     newFall.call(this);
   } else if (isGameRunning) {
@@ -247,14 +267,13 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
-  if (points >= 1) {
+  if (points >= 5) {
     youWin();
   }
 }
 
 function removePoints() {
   points -= 5;
-  addClickz();
   document.querySelector("#score_image").classList.add("loseStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
 }
@@ -269,7 +288,6 @@ function displayPoints() {
 function removeHp() {
   console.log("removeHp");
   updateHp();
-  addClickz();
   hp--;
   if (hp <= 0) {
     youLose();
@@ -294,39 +312,16 @@ function displayClickz() {
 
   console.log(accuracy);
   document.querySelector("#accuracy_count").textContent = (accuracy * 100).toFixed(2) + "%";
-  // updateEverything();
 }
-
-// function updateEverything() {
-//   finalScore = (accuracy + 1) * points;
-//   console.log("======EVERYTHING=======");
-//   console.log("Points: " + points);
-//   console.log("total clickz: " + totalClickz);
-//   console.log("good clickz: " + goodClickz);
-//   console.log("hp: " + hp);
-//   console.log("accuracy: " + accuracy);
-//   console.log("Final score: " + finalScore);
-//   if (points >= 3) {
-//     youWin();
-//   }
-// }
 
 function timeIsUp() {
   console.log("timeIsUp");
 
-  if (finalScore >= 1) {
+  if (finalScore >= 35) {
     youWin();
   } else {
     youLose();
   }
-  // resetVariables();
-  // gainHp();
-  // displayPoints();
-  // // addAnimations();
-  // // hideScreens();
-  // // registerClick();
-  // startUp();
-  // document.querySelector("#accuracy_count").textContent = "100.00%";
 }
 
 function youWin() {
@@ -336,32 +331,37 @@ function youWin() {
   let sound = document.querySelector("#sound_win");
   sound.play();
 
+  if (finalScore > highScore || highScore == undefined) {
+    highScore = finalScore;
+    console.log("HIGHSCORE=======================");
+  }
+  document.querySelector("#highscore_win").textContent = "Your highscore is: " + parseFloat(highScore.toFixed(2));
+
   document.querySelector("#level_complete").classList.remove("hidden");
-  document.querySelector("#final_score2").innerHTML =
-    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#score_win").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "%";
+  document.querySelector("#final_win").textContent = "Total score: " + parseFloat(finalScore.toFixed(2));
 
   resetGame();
-  // document.querySelector("#start_over1").addEventListener("click", goToStart);
-  // document.querySelector("#win_over").addEventListener("click", restartGame);
-  // document.querySelector("#win_over").addEventListener("mouseover", soundButton);
 }
 
 function youLose() {
   console.log("You lose :(");
 
-  // soundDefeat();
   document.querySelector("#sound_background").pause();
   let sound = document.querySelector("#sound_lose");
   sound.play();
 
+  if (finalScore > highScore || highScore == undefined) {
+    highScore = finalScore;
+    console.log("HIGHSCORE=======================");
+  }
+  document.querySelector("#highscore_lose").textContent = "Your highscore is: " + parseFloat(highScore.toFixed(2));
+
   document.querySelector("#game_over").classList.remove("hidden");
-  document.querySelector("#final_score1").innerHTML =
-    "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "% <br /> Total score: " + parseFloat(finalScore.toFixed(2));
+  document.querySelector("#score_lose").innerHTML = "Your score was: " + points + "<br /> With an accuracy of: " + (accuracy * 100).toFixed(2) + "%";
+  document.querySelector("#final_lose").innerHTML = "Total score: " + parseFloat(finalScore.toFixed(2));
 
   resetGame();
-  // document.querySelector("#start_over2").addEventListener("click", goToStart);
-  // document.querySelector("#lose_over").addEventListener("click", restartGame);
-  // document.querySelector("#lose_over").addEventListener("mouseover", soundButton);
 }
 
 function goToStart() {
@@ -371,36 +371,21 @@ function goToStart() {
   document.querySelector("#start").classList.remove("hidden");
 }
 
-// function soundDefeat() {
-//   document.querySelector("#sound_background").pause();
-//   let sound = document.querySelector("#sound_lose");
-//   sound.play();
-// }
-
 function resetGame() {
-  isGameRunning = 0;
+  isGameRunning = false;
 
   document.querySelector("#time_sprite").classList.remove("shrink");
 
+  removeEvents();
   resetVariables();
   gainHp();
   displayPoints();
   removeAnimations();
-  removeEvents();
-}
-
-function restartGame() {
-  resetVariables();
-  gainHp();
-  displayPoints();
-  startUp();
-  document.querySelector("#accuracy_count").textContent = "???";
 }
 
 function removeAnimations() {
   console.log("remove animations");
   document.querySelectorAll(".container").forEach((container) => container.classList.remove("falling1", "falling2", "falling3", "line1", "line2", "line3", "line4"));
-  // document.querySelectorAll(".container").forEach((container) => container.classList.remove("horizontal1", "horizontal2", "horizontal3", "horizontal4", "horizontal5", "horizontal6", "horizontal7", "horizontal8", "horizontal9", "horizontal10"));
   document.querySelectorAll(".container").forEach((container) => container.offsetLeft);
   document.querySelectorAll(".sprite").forEach((sprite) => sprite.classList.remove("rotate2"));
 }
@@ -412,19 +397,14 @@ function removeEvents() {
   document.querySelector("#background").removeEventListener("mousedown", addClickz);
 }
 
-function hideScreens() {
-  document.querySelector("#game_over").classList.add("hidden");
-  document.querySelector("#level_complete").classList.add("hidden");
-  document.querySelector("#start").classList.add("hidden");
-}
-
 function resetVariables() {
+  console.log("RESET!!!!!!!!!!!!!!!");
   points = 0;
   hp = 3;
-  totalClickz = 0;
   goodClickz = 0;
   finalScore = 0;
   accuracy = 0;
+  totalClickz = 0;
 }
 
 function gainHp() {
