@@ -6,8 +6,8 @@ let points = 0;
 let hp = 3;
 let totalClickz = 0;
 let goodClickz = 0;
-let accuracy;
-let finalScore;
+let accuracy = 0
+let finalScore = 0
 let isGameRunning = false;
 let highScore = localStorage.getItem("highScore");
 
@@ -356,7 +356,7 @@ function timeIsUp() {
   
     youLose();
   }
-  document.querySelector("#game_over").addEventListener("animationend", youLose);
+
 }
 
 function youWin() {
