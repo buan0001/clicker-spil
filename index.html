@@ -13,26 +13,26 @@
       <div id="game">
         <div id="background"></div>
         <div id="elements">
-          <div id="water_container" class="good fall container">
-            <img id="water_sprite" class="sprite" src="grafik/water1.png" />
+          <div id="water_container"  class="good fall container">
+            <img id="water_sprite" draggable="false"class="sprite" src="grafik/water1.png" />
           </div>
           <div id="banana_container" class="good fall container">
-            <img id="banana_sprite" class="sprite" src="grafik/banana1.png" />
+            <img id="banana_sprite" draggable="false" class="sprite" src="grafik/banana1.png" />
           </div>
-          <div id="air_container" class="good fall container">
-            <img id="air_sprite" class="sprite" src="grafik/oxygen-tank.png" />
+          <div id="air_container"  class="good fall container">
+          <img id="air_sprite" draggable="false" class="sprite" src="grafik/oxygen-tank.png" />
           </div>
-          <div id="fuel_container" class="good fall container">
-            <img id="fuel_sprite" class="sprite" src="grafik/gasoline.png" />
+          <div id="fuel_container"  class="good fall container">
+          <img id="fuel_sprite" draggable="false" class="sprite" src="grafik/gasoline.png" />
           </div>
-          <div id="alien_container1" class="container alien bad">
-            <img id="alien_sprite1" class="sprite" src="grafik/monster.png" />
+          <div id="alien_container1"  class="container alien bad">
+          <img id="alien_sprite1" draggable="false" class="sprite" src="grafik/monster.png" />
           </div>
           <div id="alien_container2" class="container alien bad">
-            <img id="alien_sprite2" class="sprite" src="grafik/monster.png" />
+          <img id="alien_sprite2" draggable="false" class="sprite" src="grafik/monster.png" />
           </div>
           <div id="rotten_container" class="container fall fast bad">
-            <img id="rotten_sprite" class="sprite" src="grafik/rotten_b.png" />
+          <img id="rotten_sprite" draggable="false" class="sprite" src="grafik/rotten_b.png" />
           </div>
         </div>
         <div id="ui">
@@ -89,14 +89,17 @@
         <div id="highscore_lose" class="highscore"></div>
         <button id="lose_restart" class="buttonPulse">Go again?</button>
         <button id="lose_menu" class="buttonPulse">Main menu</button>
+        <button id="lose_resetHighscore" class="buttonPulse">Reset Highscore</button>
+
       </div>
       <div id="level_complete" class="hidden">
         <h2>YOU WIN 🙌👍</h2>
         <div id="score_win"></div>
         <div id="final_win"></div>
         <div id="highscore_win" class="highscore"></div>
-        <button id="win_restart" class="buttonPulse">Go again?</button>
-        <button id="win_menu" class="buttonPulse">Main menu</button>
+        <button id="win_restart" class="buttonPulse">Go Again?</button>
+        <button id="win_menu" class="buttonPulse">Main Menu</button>
+        <button id="win_menu" class="buttonPulse">Reset Highscore</button>
       </div>
     </div>
     <div id="sound">

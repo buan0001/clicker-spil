@@ -6,8 +6,8 @@ let points = 0;
 let hp = 3;
 let totalClickz = 0;
 let goodClickz = 0;
-let accuracy;
-let finalScore;
+let accuracy = 0
+let finalScore = 0
 let isGameRunning = false;
 let highScore = localStorage.getItem("highScore");
 
@@ -31,6 +31,15 @@ function startButtons() {
   let loseRestart = document.querySelector("#lose_restart");
   loseRestart.addEventListener("click", startUp);
   loseRestart.addEventListener("mouseover", soundButton);
+
+  let loseResetHighscore = document.querySelector("#lose_resetHighscore");
+  loseResetHighscore.addEventListener("click", resetHighscore);
+  loseResetHighscore.addEventListener("mouseover", soundButton);
+  
+  let winResetHighscore = document.querySelector("#win_resetHighscore");
+  winResetHighscore.addEventListener("click", resetHighscore);
+  winResetHighscore.addEventListener("mouseover", soundButton);
+
 }
 
 function soundButton() {
@@ -303,6 +312,9 @@ function addPoints() {
   addClickz();
   document.querySelector("#score_image").classList.add("gainStuff");
   document.querySelector("#score_image").addEventListener("animationend", displayPoints);
+    if (points >= 4) {
+      youWin();
+    }
 }
 
 function removePoints() {
@@ -356,7 +368,7 @@ function timeIsUp() {
   
     youLose();
   }
-  document.querySelector("#game_over").addEventListener("animationend", youLose);
+  
 }
 
 function youWin() {
@@ -426,6 +438,13 @@ function goToStart() {
   start.classList.add("fade_in");
 
   document.querySelector("#elements").classList.remove("hidden");
+}
+
+function resetHighscore() {
+  console.log("reset");
+  localStorage.setItem("highScore", 0);
+  document.querySelector("#highscore_lose").textContent = "Your highscore is: " + localStorage.getItem("highScore");
+  document.querySelector("#highscore_win").textContent = "Your highscore is: " + localStorage.getItem("highScore");
 }
 
 function resetGame() {

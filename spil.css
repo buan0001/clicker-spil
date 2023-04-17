@@ -61,7 +61,7 @@ img {
   background-size: cover;
   z-index: 100;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   display: grid;
   justify-content: center;
   align-content: center;
@@ -74,7 +74,7 @@ img {
   background-size: cover;
   z-index: 100;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   display: grid;
   justify-content: center;
   align-content: center;
